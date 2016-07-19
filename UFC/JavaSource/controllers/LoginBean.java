@@ -153,6 +153,8 @@ public class LoginBean implements Serializable{
 	public String logar() {
 
 		try {
+			
+			this.usuario.setLogin(this.usuario.getLogin().toUpperCase());
 
 			this.usuarioWS = this.servicoLogin.buscaLoginWS(this.usuario.getLogin());
 			this.servicoLogin.autenticaLogin(this.usuarioWS, this.senha);

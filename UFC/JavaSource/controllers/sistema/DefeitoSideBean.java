@@ -123,6 +123,22 @@ public class DefeitoSideBean {
 		}
 
 	}
+	
+	public void modificarDefeitoSideRemoveLista(DefeitoSide defeitoSide) {
+
+		try {
+
+			StatusDefeito statusDefeito = this.statusDefeitoServico.listarStatusDefeitoEspecifico("Removido Fila");			
+			this.defeitoSideServico.modificarDefeitoSide(defeitoSide, statusDefeito);
+			JSFUtil.addInfoMessage("Ação realizada com sucesso.");
+
+		} catch (Exception e) {
+
+			JSFUtil.addErrorMessage(e.getMessage());
+
+		}
+
+	}
 
 	public void redirecionaDetalhesDefeitoSide(DefeitoSide defeitoSide) {
 
@@ -197,6 +213,35 @@ public class DefeitoSideBean {
 
 		return this.defeitoSideServico.listarDefeitoSideEncerradoSemSS(statusDefeito);
 
+	}
+
+	public List<DefeitoSide> listarDefeitoSideEmTratamento() throws Exception {
+
+
+		StatusDefeito statusDefeito = this.statusDefeitoServico.listarStatusDefeitoEspecifico("Em tratamento");	
+
+		return this.defeitoSideServico.listarDefeitoSide(statusDefeito);		
+
+	}
+	
+	public void voltarDefeitoParaFila(DefeitoSide defeitoSide) {
+		
+		try {
+			
+			StatusDefeito statusDefeito = this.statusDefeitoServico.listarStatusDefeitoEspecifico("Aberto");
+			
+			defeitoSide.setUsuarioEfika(null);
+			
+			this.defeitoSideServico.modificarDefeitoSide(defeitoSide, statusDefeito);
+			
+			JSFUtil.addInfoMessage("Erro ao voltar defeito para fila");
+			
+		} catch (Exception e) {
+			
+			JSFUtil.addErrorMessage(e.getMessage());
+			
+		}
+		
 	}
 
 	public DefeitoSide getDefeitoSide() {

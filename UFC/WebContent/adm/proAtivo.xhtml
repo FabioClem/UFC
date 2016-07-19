@@ -49,7 +49,7 @@
 				<p:dataTable id="defeitosData" var="defeitoSide"
 					selectionMode="single" rowKey="#{defeitoSide.id}"
 					value="#{defeitoSideBean.listarDefeitoSideEncerradoSemSS()}"
-					emptyMessage="Não há defeitos disponiveis"
+					emptyMessage="Não há defeitos encerrados"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
 					paginator="true" style="margin-bottom:20px" rows="10"
 					currentPageReportTemplate="[{startRecord} de {endRecord}]">
@@ -106,6 +106,59 @@
 					</h:panelGrid>
 
 				</p:fieldset>
+
+				<br />
+
+				<p:dataTable
+					value="#{defeitoSideBean.listarDefeitoSideEmTratamento()}"
+					var="defeitoSideTratamento"
+					emptyMessage="Não há defeitos sendo tratados"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+					paginator="true" rows="10"
+					currentPageReportTemplate="[{startRecord} de {endRecord}]">
+
+					<p:column headerText="Instancia">
+
+						<h:outputText value="#{defeitoSideTratamento.instancia}" />
+
+					</p:column>
+
+					<p:column headerText="Tipificação">
+
+						<h:outputText value="#{defeitoSideTratamento.tipificacao.nome}" />
+
+					</p:column>
+
+					<p:column headerText="Data integrado">
+
+						<h:outputText
+							value="#{defeitoSideTratamento.dataIntegradoFormatado}" />
+
+					</p:column>
+
+					<p:column headerText="Usuário">
+
+						<h:outputText value="#{defeitoSideTratamento.usuarioEfika.login}" />
+
+					</p:column>
+
+					<p:column headerText="Lote">
+
+						<h:outputText value="#{defeitoSideTratamento.lote.nome}" />
+
+					</p:column>
+
+					<p:column headerText="Ações" style="width: 80px;">
+					
+						<p:commandButton icon="fa fa-arrow-circle-left"
+							title="Volta defeito para fila" action="#{defeitoSideBean.voltarDefeitoParaFila(defeitoSideTratamento)}" update="@all"/>
+						<p:commandButton icon="fa fa-arrow-circle-right"
+							action="#{defeitoSideBean.modificarDefeitoSideRemoveLista(defeitoSideTratamento)}"
+							title="Remove defeito da lista" update="@all"/>						
+
+					</p:column>
+
+				</p:dataTable>
 
 			</h:form>
 

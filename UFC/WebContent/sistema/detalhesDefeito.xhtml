@@ -50,35 +50,7 @@
 
 				<br />
 
-				<p:commandButton value="registrar" onclick="PF('registraSS').show()">
 
-					<f:setPropertyActionListener value="#{defeitoSideBean.defeitoSide}"
-						target="#{defeitoSideBean.defeitoSideModifica}" />
-
-				</p:commandButton>
-
-				<p:dialog header="Adicionar SS" widgetVar="registraSS"
-					resizable="false">
-
-					<h:panelGrid columns="2">						
-
-						<h:outputText value="Motivo Encerramento" style="font-weight:bold" />
-						<p:selectOneMenu
-							value="#{defeitoSideBean.defeitoSideModifica.motivoEncerramento}"
-							converter="omnifaces.SelectItemsConverter" filter="true"
-							filterMatchMode="startsWith">
-							<f:selectItem itemLabel="-- Selecione --" itemValue="" />
-							<f:selectItems
-								value="#{motivoEncerramentoBean.listarMotivoEncerramentoAtivo()}"
-								var="motivo" itemLabel="#{motivo.nome}" itemValue="#{motivo}" />
-						</p:selectOneMenu>
-
-						<p:commandButton value="Salvar"
-							action="#{defeitoSideBean.encerrarDefeitoSide()}" update="@all" />
-
-					</h:panelGrid>
-
-				</p:dialog>
 
 			</p:fieldset>
 
@@ -115,15 +87,46 @@
 
 			<br />
 
-			<p:fieldset legend="Outras Ações" toggleable="true" toggleSpeed="500">
+			<p:fieldset legend="Ações" toggleable="true" toggleSpeed="500">
+
+				<p:commandButton value="Finalizar" onclick="PF('registraSS').show()">
+
+					<f:setPropertyActionListener value="#{defeitoSideBean.defeitoSide}"
+						target="#{defeitoSideBean.defeitoSideModifica}" />
+
+				</p:commandButton>
+
+				<p:dialog header="Finalizar" widgetVar="registraSS"
+					resizable="false">
+
+					<h:panelGrid columns="2">
+
+						<h:outputText value="Motivo Encerramento" style="font-weight:bold" />
+						<p:selectOneMenu
+							value="#{defeitoSideBean.defeitoSideModifica.motivoEncerramento}"
+							converter="omnifaces.SelectItemsConverter" filter="true"
+							filterMatchMode="startsWith">
+							<f:selectItem itemLabel="-- Selecione --" itemValue="" />
+							<f:selectItems
+								value="#{motivoEncerramentoBean.listarMotivoEncerramentoAtivo()}"
+								var="motivo" itemLabel="#{motivo.nome}" itemValue="#{motivo}" />
+						</p:selectOneMenu>
+
+						<p:commandButton value="Finalizar"
+							action="#{defeitoSideBean.encerrarDefeitoSide()}" update="@all" />
+
+					</h:panelGrid>
+
+				</p:dialog>
 
 				<p:commandButton value="Retirar da fila"
 					onclick="PF('retiraDaFila').show()" />
 
-				<p:dialog header="Ação" widgetVar="retiraDaFila" resizable="false" style="text-align: center;">
+				<p:dialog header="Ação" widgetVar="retiraDaFila" resizable="false"
+					style="text-align: center;">
 
 					<h:outputText value="Deseja realmente retirar o defeito da fila?" />
-					
+
 					<br />
 
 					<p:commandButton value="Sim"
