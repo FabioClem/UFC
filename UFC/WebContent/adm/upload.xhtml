@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/recursos/template/template.xhtml">
+
+	<ui:define name="tituloPagina">
+		  Upload
+	</ui:define>
+	<ui:define name="tituloPrincipal">
+		<i class="fa fa-upload"> </i> Upload</ui:define>
+	<ui:define name="tituloSecundario"></ui:define>
+
+	<ui:define name="botoesAcao"></ui:define>
+
+	<ui:insert name="eventos">
+
+		<f:metadata>
+
+			<f:event listener="#{loginBean.validaPagina('sistema')}"
+				type="preRenderView" />
+			<f:event listener="#{loginBean.validarLogin()}" type="preRenderView" />
+			<f:event listener="#{loginBean.isAdmRedireciona()}"
+				type="preRenderView" />
+
+		</f:metadata>
+
+	</ui:insert>
+
+	<ui:define name="conteudo">
+
+		<p:panel header="Upload de lista">
+
+			<h:form>
+
+				<p:fileUpload fileUploadListener="#{loteBean.cadastrarLote}"
+					mode="advanced" dragDropSupport="true" multiple="true"
+					update="messages" sizeLimit="5000000" fileLimit="5"
+					allowTypes="/(\.|\/)(csv)$/" label="Escolher Arquivo"
+					cancelLabel="Cancelar" />
+
+				<p:growl id="messages" showDetail="true" />
+
+				<br />
+				<br />
+
+				<h:outputText
+					value="O Upload do CSV deve ser seguido a seguinte ordem para realizar a integração: SS / INSTANCIA / TIPIFICACAO / DATAABERTURA / DATAVENCIMENTO / FULLTEST / TIPODEFEITO" style="font-weight: bold;" />
+				
+				<br />
+				<br />
+
+				<h:outputText
+					value="Os campos que possuem padrões de informação são o FULLTEST e TIPODEFEITO"
+					style="font-weight: bold;" />
+				<br />
+				<h:outputText
+					value="FULLTEST -> SIM ou NÃO / Se deseja realizar o fulltest, se campo ficar em branco o mesmo entenderá como NÃO." />
+				<br />
+				<h:outputText
+					value="TIPODEFEITO -> LINHA, BANDA, TV e PROATIVO / Informação para entrada na fila específica." />
+				<br />
+				<br />
+				<h:outputText value="Defeitos" style="font-weight: bold;" />
+				<br />
+				<h:outputText
+					value="Para defeitos de LINHA, BANDA e TV deve-se preencher os campos SS / INSTANCIA / TIPIFICACAO / TIPODEFEITO" />
+				<br/>
+				<h:outputText
+					value="Os campos DATAABERTURA / DATAVENCIMENTO / FULLTEST, se estiverem vazios vão ser inseridos informações padrões, nos campos de data será inserido a data de hoje, e no FULLTEST a informação será NÂO " />
+				<br />
+				<br />
+				<h:outputText value="Defeitos Pró-Ativo:" style="font-weight: bold;" />
+				<br />
+				<h:outputText
+					value="Para defeitos Pró-Ativos deve-se preencher somente os campos INSTANCIA / TIPIFICACAO / TIPODEFEITO, se inserido outras informações as mesmas não serão inseridas." />
+				<br/>
+				<h:outputText value="O campo TIPODEFEITO deve ser preenchido como PROATIVO."/>				
+				<br />
+				<br />
+				
+				<h:outputText
+					value="Caso padrão não for seguido o defeito não será integrado na ferramenta." style="font-weight: bold;"/>
+
+			</h:form>
+
+		</p:panel>
+
+	</ui:define>
+</ui:composition>
+</html>

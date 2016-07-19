@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/recursos/template/template.xhtml">
+
+	<ui:define name="tituloPagina">
+		Detalhes Defeito
+	</ui:define>
+	<ui:define name="tituloPrincipal">
+		<i class="fa fa-list"> </i> Detalhes Defeito</ui:define>
+	<ui:define name="tituloSecundario"></ui:define>
+
+	<ui:define name="botoesAcao"></ui:define>
+
+	<ui:define name="conteudo">
+
+		<f:metadata>
+
+			<f:viewParam name="id" value="#{defeitoSideBean.defeitoSide.id}" />
+			<f:event listener="#{defeitoSideBean.listarDefeitoSideEspecifico()}"
+				type="preRenderView" />
+
+		</f:metadata>
+
+		<p:panel header="Detalhes Defeito">
+
+			<p:fieldset legend="Defeito" toggleable="true" toggleSpeed="500">
+
+				<p:panelGrid columns="2">
+
+					<h:outputText value="Instancia: " />
+					<h:outputText value="#{defeitoSideBean.defeitoSide.instancia}" />
+
+					<h:outputText value="Tipificação: " />
+					<h:outputText
+						value="#{defeitoSideBean.defeitoSide.tipificacao.nome}" />
+
+					<h:outputText value="Lote: " />
+					<h:outputText value="#{defeitoSideBean.defeitoSide.lote.nome}" />
+
+					<h:outputText value="Data integrado: " />
+					<h:outputText
+						value="#{defeitoSideBean.defeitoSide.dataIntegradoFormatado}" />
+
+				</p:panelGrid>
+
+				<br />
+
+				<p:commandButton value="registrar" onclick="PF('registraSS').show()">
+
+					<f:setPropertyActionListener value="#{defeitoSideBean.defeitoSide}"
+						target="#{defeitoSideBean.defeitoSideModifica}" />
+
+				</p:commandButton>
+
+				<p:dialog header="Adicionar SS" widgetVar="registraSS"
+					resizable="false">
+
+					<h:panelGrid columns="2">						
+
+						<h:outputText value="Motivo Encerramento" style="font-weight:bold" />
+						<p:selectOneMenu
+							value="#{defeitoSideBean.defeitoSideModifica.motivoEncerramento}"
+							converter="omnifaces.SelectItemsConverter" filter="true"
+							filterMatchMode="startsWith">
+							<f:selectItem itemLabel="-- Selecione --" itemValue="" />
+							<f:selectItems
+								value="#{motivoEncerramentoBean.listarMotivoEncerramentoAtivo()}"
+								var="motivo" itemLabel="#{motivo.nome}" itemValue="#{motivo}" />
+						</p:selectOneMenu>
+
+						<p:commandButton value="Salvar"
+							action="#{defeitoSideBean.encerrarDefeitoSide()}" update="@all" />
+
+					</h:panelGrid>
+
+				</p:dialog>
+
+			</p:fieldset>
+
+			<br />
+
+			<p:fieldset legend="Comentários" toggleable="true" toggleSpeed="500">
+
+				<h:panelGrid>
+
+					<h:outputText value="Inserir comentário" />
+					<p:inputTextarea rows="5" cols="80"
+						value="#{comentarioDefeitoBean.comentarioDefeito.descricao}"
+						maxlength="750" />
+
+					<p:commandButton value="Inserir"
+						action="#{comentarioDefeitoBean.cadastrarComentarioDefeito(defeitoSideBean.defeitoSide)}"
+						update="@all" />
+
+					<h:outputText value="Comentários" />
+					<ui:repeat var="comentarios"
+						value="#{comentarioDefeitoBean.listarComentarioDefeito(defeitoSideBean.defeitoSide)}">
+
+						<h:outputText value="#{comentarios.dataComentarioFormatada} " />
+						<h:outputText
+							value=" #{comentarios.defeitoSide.usuarioEfika.login} " />
+						<h:outputText value=" #{comentarios.descricao}" />
+						<br />
+
+					</ui:repeat>
+
+				</h:panelGrid>
+
+			</p:fieldset>
+
+			<br />
+
+			<p:fieldset legend="Outras Ações" toggleable="true" toggleSpeed="500">
+
+				<p:commandButton value="Retirar da fila"
+					onclick="PF('retiraDaFila').show()" />
+
+				<p:dialog header="Ação" widgetVar="retiraDaFila" resizable="false" style="text-align: center;">
+
+					<h:outputText value="Deseja realmente retirar o defeito da fila?" />
+					
+					<br />
+
+					<p:commandButton value="Sim"
+						action="#{defeitoSideBean.modificarDefeitoSideRemoveLista()}"
+						style="float: left;" />
+
+					<p:commandButton value="Não" onclick="PF('retiraDaFila').hide()"
+						style="float: right;" />
+
+				</p:dialog>
+
+			</p:fieldset>
+
+		</p:panel>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

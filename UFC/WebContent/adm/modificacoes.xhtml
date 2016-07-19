@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/recursos/template/template.xhtml">
+
+	<ui:define name="tituloPagina">
+		Gerenciar Sistema
+	</ui:define>
+	<ui:define name="tituloPrincipal">
+		<i class="fa fa-cog"> </i>Gerenciar Sistema</ui:define>
+	<ui:define name="tituloSecundario"></ui:define>
+
+	<ui:define name="botoesAcao"></ui:define>
+
+	<ui:insert name="eventos">
+
+		<f:metadata>
+
+			<f:event listener="#{loginBean.validaPagina('sistema')}"
+				type="preRenderView" />
+			<f:event listener="#{loginBean.validarLogin()}" type="preRenderView" />
+			<f:event listener="#{loginBean.isAdmRedireciona()}" type="preRenderView" />
+
+		</f:metadata>
+
+	</ui:insert>
+
+	<ui:define name="conteudo">
+
+		<h:form id="form">
+
+			<p:tabView dynamic="true" cache="true" id="tabview">
+
+				<p:tab title="Controle Usuário">
+
+					<h:panelGrid>
+
+						<h:outputText value="Login: " style="font-weight:bold" />
+						<p:selectOneMenu
+							value="#{controleUsuarioBean.controleUsuario.usuarioEfika}"
+							converter="omnifaces.SelectItemsConverter" filter="true"
+							filterMatchMode="startsWith">
+							<f:selectItem itemLabel="-- Selecione --" itemValue="" />
+							<f:selectItems
+								value="#{controleUsuarioBean.listarUsuarioEfika()}"
+								var="usuario" itemLabel="#{usuario.login}"
+								itemValue="#{usuario}" />
+						</p:selectOneMenu>
+
+						<h:outputText value="Adm: " />
+						<p:selectBooleanCheckbox
+							value="#{controleUsuarioBean.controleUsuario.adm}" />
+
+						<h:outputText value="Tipo Defeito: " style="font-weight:bold" />
+						<p:selectManyCheckbox
+							value="#{controleUsuarioBean.listaDoTipoDefeito}"
+							layout="pageDirection" columns="1">
+
+							<f:selectItems value="#{tipoDefeitoBean.listaTipoDefeito()}"
+								var="tipoDefeito" itemLabel="#{tipoDefeito.nome}"
+								itemValue="#{tipoDefeito.nome}" />
+
+						</p:selectManyCheckbox>
+
+						<p:commandButton value="Cadastrar"
+							action="#{controleUsuarioBean.validaCadastroControleUsuario()}"
+							update="@all" />
+
+					</h:panelGrid>
+
+					<p:dataTable value="#{controleUsuarioBean.listarControleUsuario()}"
+						var="usuario" style="margin-top: 20px;"
+						emptyMessage="Não há usuários registrados">
+
+						<p:column headerText="Login" style="text-align: center;">
+
+							<h:outputText value="#{usuario.usuarioEfika.login}" />
+
+						</p:column>
+
+						<p:column headerText="Adm" style="text-align: center;">
+
+							<h:outputText rendered="#{usuario.adm}" value="Sim" />
+							<h:outputText rendered="#{!usuario.adm}" value="Não" />
+
+						</p:column>
+
+						<p:column headerText="Ativo" style="text-align: center;">
+
+							<h:outputText rendered="#{usuario.ativo}" value="Ativo" />
+							<h:outputText rendered="#{!usuario.ativo}" value="Inativo" />
+
+						</p:column>
+
+						<p:column headerText="Sistema" style="text-align: center;">
+
+							<h:outputText value="#{usuario.tipoDefeito}" />
+
+						</p:column>
+
+						<p:column headerText="Editar"
+							style="text-align: center; width: 50px;">
+
+							<p:commandButton update="@form:tabview:detalhesModUsuario"
+								oncomplete="PF('modUser').show()" icon="ui-icon-pencil"
+								title="Edita Código">
+
+								<f:setPropertyActionListener value="#{usuario}"
+									target="#{controleUsuarioBean.controleUsuarioModifica}" />
+
+							</p:commandButton>
+
+						</p:column>
+
+					</p:dataTable>
+
+					<p:dialog header="Edita Controle Usuário" widgetVar="modUser"
+						modal="true" showEffect="fade" hideEffect="fade" resizable="false"
+						width="300" height="250">
+
+						<h:panelGroup id="detalhesModUsuario">
+
+							<h:panelGrid>
+
+								<h:outputText value="Login" style="font-weight:bold" />
+								<h:outputText
+									value="#{controleUsuarioBean.controleUsuarioModifica.usuarioEfika.login}" />
+
+								<h:outputText value="Adm: " />
+								<p:selectBooleanCheckbox
+									value="#{controleUsuarioBean.controleUsuarioModifica.adm}" />
+
+								<h:outputText value="Ativo?:" style="font-weight:bold" />
+								<p:selectBooleanCheckbox
+									value="#{controleUsuarioBean.controleUsuarioModifica.ativo}" />
+
+								<h:outputText value="Tipo Defeito" style="font-weight:bold" />
+								<p:selectManyCheckbox
+									value="#{controleUsuarioBean.listaDoTipoDefeitoModifica}"
+									layout="pageDirection" columns="1">
+
+									<f:selectItems value="#{tipoDefeitoBean.listaTipoDefeito()}"
+										var="tipoDefeito" itemLabel="#{tipoDefeito.nome}"
+										itemValue="#{tipoDefeito.nome}" />
+
+								</p:selectManyCheckbox>
+
+								<p:commandButton value="Cadastrar"
+									action="#{controleUsuarioBean.modificarControleUsuario()}"
+									update="@all" />
+
+							</h:panelGrid>
+
+						</h:panelGroup>
+
+					</p:dialog>
+
+				</p:tab>
+
+				<p:tab title="Motivo Encerramento">
+
+					<h:panelGrid>
+
+						<h:outputText value="Motivo Encerramento "
+							style="font-weight:bold" />
+						<p:inputText
+							value="#{motivoEncerramentoBean.motivoEncerramento.nome}" />
+
+						<h:outputText value="Código " style="font-weight:bold" />
+						<p:inputText
+							value="#{motivoEncerramentoBean.motivoEncerramento.codigo}" />
+
+						<h:outputText value="Ativo " />
+						<p:selectBooleanCheckbox
+							value="#{motivoEncerramentoBean.motivoEncerramento.ativo}" />
+
+						<p:commandButton value="Cadastrar"
+							action="#{motivoEncerramentoBean.cadastrarMotivoEncerramento()}"
+							update="@all" />
+
+					</h:panelGrid>
+
+					<p:dataTable
+						value="#{motivoEncerramentoBean.listarMotivoEncerramento()}"
+						var="motivo" style="margin-top: 20px;"
+						emptyMessage="Não há motivo registrados">
+
+						<p:column headerText="Motivo" style="text-align: center;">
+
+							<h:outputText value="#{motivo.nome}" />
+
+						</p:column>
+
+						<p:column headerText="Código" style="text-align: center;">
+
+							<h:outputText value="#{motivo.codigo}" />
+
+						</p:column>
+
+						<p:column headerText="Ativo" style="text-align: center;">
+
+							<h:outputText rendered="#{motivo.ativo}" value="Ativo" />
+							<h:outputText rendered="#{!motivo.ativo}" value="Inativo" />
+
+						</p:column>
+
+						<p:column headerText="Editar"
+							style="text-align: center; width: 50px;">
+
+							<p:commandButton
+								update="@form:tabview:detalhesMotivoEncerramento"
+								oncomplete="PF('modMotivoEncerramento').show()"
+								icon="ui-icon-pencil" title="Edita Código">
+
+								<f:setPropertyActionListener value="#{motivo}"
+									target="#{motivoEncerramentoBean.motivoEncerramentoModifica}" />
+
+							</p:commandButton>
+
+						</p:column>
+
+					</p:dataTable>
+
+					<p:dialog header="Edita Motivo Encerramento"
+						widgetVar="modMotivoEncerramento" modal="true" showEffect="fade"
+						hideEffect="fade" resizable="false" width="300" height="250">
+
+						<h:panelGroup id="detalhesMotivoEncerramento">
+
+							<h:panelGrid>
+
+								<h:outputText value="Motivo Encerramento "
+									style="font-weight:bold" />
+								<p:inputText
+									value="#{motivoEncerramentoBean.motivoEncerramentoModifica.nome}" />
+
+								<h:outputText value="Código " style="font-weight:bold" />
+								<p:inputText
+									value="#{motivoEncerramentoBean.motivoEncerramentoModifica.codigo}" />
+
+								<h:outputText value="Ativo " />
+								<p:selectBooleanCheckbox
+									value="#{motivoEncerramentoBean.motivoEncerramentoModifica.ativo}" />
+
+								<p:commandButton value="Cadastrar"
+									action="#{motivoEncerramentoBean.modificarMotivoEncerramento()}"
+									update="@all" />
+
+							</h:panelGrid>
+
+						</h:panelGroup>
+
+					</p:dialog>
+					
+
+				</p:tab>
+
+			</p:tabView>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/recursos/template/template.xhtml">
+
+	<ui:define name="tituloPagina">
+		  Lista
+	</ui:define>
+	<ui:define name="tituloPrincipal">
+		<i class="fa fa fa-edit"> </i> Lista</ui:define>
+	<ui:define name="tituloSecundario"></ui:define>
+
+	<ui:define name="botoesAcao"></ui:define>
+
+	<ui:insert name="eventos">
+
+		<f:metadata>
+
+			<f:event listener="#{loginBean.validaPagina('relatorio')}"
+				type="preRenderView" />
+			<f:event listener="#{loginBean.validarLogin()}" type="preRenderView" />
+			<f:event listener="#{loginBean.isAdmRedireciona()}"
+				type="preRenderView" />
+
+		</f:metadata>
+
+	</ui:insert>
+	
+	<ui:define name="conteudo">
+
+		<p:panel header="Lista">
+
+			<h:panelGrid columns="3">
+
+				<h:outputText value="Data Inicio" />
+				<h:outputText value="Data Fim" />
+				<h:outputText value="" />
+				<p:calendar value="#{relatorioBean.dataInicio}" pattern="dd/MM/yyyy"
+					mask="true" />
+				<p:calendar value="#{relatorioBean.dataFim}" pattern="dd/MM/yyyy"
+					mask="true" />
+
+				<p:commandButton value="Buscar"
+					action="#{relatorioBean.listarDefeitoSideEncerrado()}"
+					update="defeitosSide" />
+
+			</h:panelGrid>
+			
+			<h:outputText value="Insira as datas e clique em buscar para montar a lista dos defeitos."/>
+			<br/>						
+			<br/>
+
+			<p:dataTable id="defeitosSide" value="#{relatorioBean.defeitoSides}"
+				var="defeitoSide"
+				emptyMessage="Preencha as datas para obter os defeitos encerrados"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+				paginator="true" rows="5"
+				currentPageReportTemplate="[{startRecord} de {endRecord}]">
+
+				<f:facet name="header">
+	            	Defeitos encerrados	            
+				</f:facet>
+
+				<f:facet name="{Exporters}">
+					<h:commandLink>
+						<i class="fa fa-download"></i> 
+						Exportar
+						<p:dataExporter type="xls" target="defeitosSide"
+							fileName="DefeitosSide" />
+					</h:commandLink>
+				</f:facet>
+
+				<p:column headerText="SS">
+
+					<h:outputText value="#{defeitoSide.ss}" />
+
+				</p:column>
+
+				<p:column headerText="Instancia">
+
+					<h:outputText value="#{defeitoSide.instancia}" />
+
+				</p:column>
+
+				<p:column headerText="Motivo de Encerramento">
+
+					<h:outputText value="#{defeitoSide.motivoEncerramento.nome}" />
+
+				</p:column>
+
+				<p:column headerText="Tipificação">
+
+					<h:outputText value="#{defeitoSide.tipificacao.nome}" />
+
+				</p:column>
+
+				<p:column headerText="Usuário">
+
+					<h:outputText value="#{defeitoSide.usuarioEfika.login}" />
+
+				</p:column>
+
+			</p:dataTable>
+			
+		</p:panel>
+
+	</ui:define>
+</ui:composition>
+</html>

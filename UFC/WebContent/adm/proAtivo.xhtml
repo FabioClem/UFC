@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/recursos/template/template.xhtml">
+
+	<ui:define name="tituloPagina">
+		  Pro-Ativo
+	</ui:define>
+	<ui:define name="tituloPrincipal">
+		<i class="fa fa fa-edit"> </i> Pro-Ativo</ui:define>
+	<ui:define name="tituloSecundario"></ui:define>
+
+	<ui:define name="botoesAcao"></ui:define>
+
+	<ui:insert name="eventos">
+
+		<f:metadata>
+
+			<f:event listener="#{loginBean.validaPagina('sistema')}"
+				type="preRenderView" />
+			<f:event listener="#{loginBean.validarLogin()}" type="preRenderView" />
+			<f:event listener="#{loginBean.isAdmRedireciona()}"
+				type="preRenderView" />
+
+		</f:metadata>
+
+	</ui:insert>
+
+	<ui:define name="conteudo">
+
+		<p:panel header="Upload">
+
+			<h:form>
+
+				<p:fileUpload fileUploadListener="#{loteBean.loteDefeitoSide}"
+					mode="advanced" dragDropSupport="true" multiple="true"
+					update="messages, defeitosData" sizeLimit="5000000" fileLimit="5"
+					allowTypes="/(\.|\/)(csv)$/" label="Escolher Arquivo"
+					cancelLabel="Cancelar" />
+
+				<p:growl id="messages" showDetail="true" />
+
+				<br />
+
+				<p:dataTable id="defeitosData" var="defeitoSide"
+					selectionMode="single" rowKey="#{defeitoSide.id}"
+					value="#{defeitoSideBean.listarDefeitoSideEncerradoSemSS()}"
+					emptyMessage="Não há defeitos disponiveis"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+					paginator="true" style="margin-bottom:20px" rows="10"
+					currentPageReportTemplate="[{startRecord} de {endRecord}]">
+
+					<f:facet name="{Exporters}">
+
+						<h:commandLink>
+
+							<i class="fa fa-download"></i> 						
+						Exportar base						
+						<p:dataExporter type="xls" target="defeitosData"
+								fileName="DefeitoProAtivos" />
+
+						</h:commandLink>
+
+					</f:facet>
+
+					<p:column headerText="Instancia" style="text-align: center;">
+
+						<h:outputText value="#{defeitoSide.instancia}" />
+
+					</p:column>
+
+					<p:column headerText="Id" style="text-align: center;">
+
+						<h:outputText value="#{defeitoSide.id}" />
+
+					</p:column>
+
+				</p:dataTable>
+
+				<h:outputText
+					value="O Upload do CSV deve ser seguido a seguinte ordem para realizar a integração: SS / ID"
+					style="font-weight: bold;" />
+
+				<br />
+				<h:outputText
+					value="O ID deve ser inserido conforme o ID do defeito informado na Tabela acima." />
+				<br />
+				<br />
+
+				<p:fieldset legend="Remover Lote" toggleable="true"
+					toggleSpeed="500">
+
+					<h:panelGrid columns="3">
+
+						<h:outputText value="Nome do lote:" />
+						<p:inputText value="#{loteBean.lote.nome}" />
+
+						<p:commandButton value="Remover"
+							action="#{loteBean.removerLoteEspecifico()}" update="@all" />
+
+
+					</h:panelGrid>
+
+				</p:fieldset>
+
+			</h:form>
+
+		</p:panel>
+
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/recursos/template/template.xhtml">
+
+	<ui:define name="tituloPagina">
+		  Gráfico
+	</ui:define>
+	<ui:define name="tituloPrincipal">
+		<i class="fa fa fa-edit"> </i> Gráfico</ui:define>
+	<ui:define name="tituloSecundario"></ui:define>
+
+	<ui:define name="botoesAcao"></ui:define>
+
+	<ui:insert name="eventos">
+
+		<f:metadata>
+
+			<f:event listener="#{loginBean.validaPagina('relatorio')}"
+				type="preRenderView" />
+			<f:event listener="#{loginBean.validarLogin()}" type="preRenderView" />
+			<f:event listener="#{loginBean.isAdmRedireciona()}"
+				type="preRenderView" />
+
+		</f:metadata>
+
+	</ui:insert>
+
+	<ui:define name="conteudo">
+
+		<p:panel header="Gráfico Pró-Ativo" style="height: 550px;">
+
+			<p:chart type="pie" model="#{relatorioBean.graficoDefeitoSide}" style="width: 33%; height: 500px; float: left;" />
+			
+			<p:chart type="pie" model="#{relatorioBean.graficoDefeitoSideMotivoEncerramento}" style="width:33% ;height: 500px; float: left;" />
+			
+			<p:chart type="pie" model="#{relatorioBean.graficoDefeitoSideTipificacao}" style="width:33% ;height: 500px; float: left;" />
+			
+		</p:panel>
+
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition>
+
+	<ul id="menu">
+
+		<h:panelGroup rendered="#{loginBean.pagina==''}">
+
+			<li><a href="/UFC/"> <i class="fa fa-home" /> Início
+			</a></li>
+
+			<h:panelGroup rendered="#{loginBean.logado and loginBean.isAtivo()}">
+
+				<h:panelGroup
+					rendered="#{controleUsuarioBean.validaControleUsuario('Pro-Ativo')}">
+
+					<li><a href="/UFC/sistema/buscaDefeitos.jsf"> <i
+							class="fa fa-list-ul" /> Defeito Pró Ativo
+					</a></li>
+
+				</h:panelGroup>
+
+				<!-- <li><a href="/UFC/sistema/buscaDefeitosAll.jsf"> <i class="fa fa-list-ul" />
+						Defeitos Disponiveis
+				</a></li> -->
+
+				<li><a href="/UFC/sistema/meusDefeitos.jsf"> <i
+						class="fa fa-edit" /> Meus defeitos
+				</a></li>
+
+			</h:panelGroup>
+
+			<h:panelGroup rendered="#{loginBean.isAdm()}">
+
+				<li><a href="/UFC/adm/index.jsf"> <i class="fa fa-cog" />
+						Sistema
+				</a></li>
+
+				<li><a href="/UFC/relatorio/index.jsf"> <i
+						class="fa fa-line-chart" /> Relatório
+				</a></li>
+
+			</h:panelGroup>
+
+		</h:panelGroup>
+
+		<h:panelGroup
+			rendered="#{loginBean.isAdm() and loginBean.pagina.equalsIgnoreCase('sistema')}">
+
+			<li><a href="/UFC/adm/modificacoes.jsf"> <i
+					class="fa fa-cog" /> Gerenciar Sistema
+			</a></li>
+			
+			<li><a href="/UFC/adm/upload.jsf"> <i class="fa fa-upload" />
+					Upload
+			</a></li>		
+
+			<!-- <li><a href="/UFC/adm/dqtt.jsf"> <i class="fa fa-upload" />
+					DQTT
+			</a></li> -->
+
+			<li><a href="/UFC/adm/proAtivo.jsf"> <i class="fa fa-edit" />
+					Pró-Ativo
+			</a></li>
+
+		</h:panelGroup>
+
+		<h:panelGroup
+			rendered="#{loginBean.isAdm() and loginBean.pagina.equalsIgnoreCase('relatorio')}">
+
+			<li><a href="/UFC/relatorio/lista.jsf"> <i class="fa fa-list-ul" />
+					Lista Pró-Ativo
+			</a></li>
+
+			<li><a href="/UFC/relatorio/graficoProativo.jsf"> <i class="fa fa-pie-chart" />
+					Gráficos Pró-Ativo
+			</a></li>
+
+		</h:panelGroup>
+
+	</ul>
+</ui:composition>
+</html>
