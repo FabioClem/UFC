@@ -200,7 +200,7 @@ public class DefeitoSideServico {
 			
 			String queryC = "";
 			
-			if (statusDefeito.getNome().equalsIgnoreCase("Encerrado")) {				
+			if (statusDefeito.getNome().equalsIgnoreCase("Encerrado") || statusDefeito.getNome().equalsIgnoreCase("Removido Fila")) {				
 				
 				queryC = " AND d.dataAcao > CURRENT_DATE";
 				
