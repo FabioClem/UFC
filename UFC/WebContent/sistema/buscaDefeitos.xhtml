@@ -59,24 +59,26 @@
 
 				</p:column>
 
-				<p:column headerText="Tipificação" style="text-align: center;">
+				<p:column headerText="Tipificação" style="text-align: center;"
+					sortBy="#{defeitos.tipificacao.nome}">
 
 					<h:outputText value="#{defeitos.tipificacao.nome}" />
 
 				</p:column>
 
-				<p:column headerText="Data Integrado" style="text-align: center;">
+				<p:column headerText="Data Integrado" style="text-align: center;"
+					sortBy="#{defeitos.dataIntegradoFormatado}">
 
 					<h:outputText value="#{defeitos.dataIntegradoFormatado}" />
 
 				</p:column>
-				
+
 				<p:column headerText="Lote" style="text-align: center;">
 
 					<h:outputText value="#{defeitos.lote.nome}" />
 
 				</p:column>
-				
+
 				<p:column headerText="Ação" style="text-align: center; width: 50px;">
 
 					<p:commandButton icon="ui-icon-pencil" ajax="false"
