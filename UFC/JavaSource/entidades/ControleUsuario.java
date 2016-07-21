@@ -22,7 +22,7 @@ public class ControleUsuario {
 	
 	@ManyToOne
 	private UsuarioEfika usuarioEfika;
-
+	
 	public Integer getId() {
 		return id;
 	}
@@ -61,8 +61,9 @@ public class ControleUsuario {
 
 	public void setAdm(Boolean adm) {
 		this.adm = adm;
-	}
-
+	}	
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

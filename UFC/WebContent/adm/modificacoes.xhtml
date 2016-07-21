@@ -71,12 +71,14 @@
 							update="@all" />
 
 					</h:panelGrid>
-
-					<p:dataTable value="#{controleUsuarioBean.listarControleUsuario()}"
+					
+					<p:dataTable value="#{controleUsuarioBean.listarControleUsuario(true)}"
 						var="usuario" style="margin-top: 20px;"
-						emptyMessage="Não há usuários registrados">
+						emptyMessage="Não há usuários registrados" filteredValue="#{controleUsuarioBean.tabelaFiltrada}">
+						
+						<f:facet name="header">Usuários Adm</f:facet>
 
-						<p:column headerText="Login" style="text-align: center;">
+						<p:column headerText="Login" style="text-align: center;" filterBy="#{usuario.usuarioEfika.login}" filterMatchMode="contains">
 
 							<h:outputText value="#{usuario.usuarioEfika.login}" />
 
@@ -89,7 +91,57 @@
 
 						</p:column>
 
-						<p:column headerText="Ativo" style="text-align: center;">
+						<p:column headerText="Status" style="text-align: center;">
+
+							<h:outputText rendered="#{usuario.ativo}" value="Ativo" />
+							<h:outputText rendered="#{!usuario.ativo}" value="Inativo" />
+
+						</p:column>
+
+						<p:column headerText="Sistema" style="text-align: center;">
+
+							<h:outputText value="#{usuario.tipoDefeito}" />
+
+						</p:column>
+
+						<p:column headerText="Editar"
+							style="text-align: center; width: 50px;">
+
+							<p:commandButton update="@form:tabview:detalhesModUsuario"
+								oncomplete="PF('modUser').show()" icon="ui-icon-pencil"
+								title="Edita Código">
+
+								<f:setPropertyActionListener value="#{usuario}"
+									target="#{controleUsuarioBean.controleUsuarioModifica}" />
+
+							</p:commandButton>
+
+						</p:column>
+
+					</p:dataTable>				
+
+					<p:dataTable value="#{controleUsuarioBean.listarControleUsuario(false)}"
+						var="usuario" style="margin-top: 20px;"
+						emptyMessage="Não há usuários registrados" filteredValue="#{controleUsuarioBean.tabelaFiltrada}">
+						
+						<f:facet name="header">
+							Usuários							
+						</f:facet>
+
+						<p:column headerText="Login" style="text-align: center;" filterBy="#{usuario.usuarioEfika.login}" filterMatchMode="contains">
+
+							<h:outputText value="#{usuario.usuarioEfika.login}" />
+
+						</p:column>
+
+						<p:column headerText="Adm" style="text-align: center;">
+
+							<h:outputText rendered="#{usuario.adm}" value="Sim" />
+							<h:outputText rendered="#{!usuario.adm}" value="Não" />
+
+						</p:column>
+
+						<p:column headerText="Status" style="text-align: center;">
 
 							<h:outputText rendered="#{usuario.ativo}" value="Ativo" />
 							<h:outputText rendered="#{!usuario.ativo}" value="Inativo" />
@@ -120,7 +172,7 @@
 
 					<p:dialog header="Edita Controle Usuário" widgetVar="modUser"
 						modal="true" showEffect="fade" hideEffect="fade" resizable="false"
-						width="300" height="250">
+						width="300" height="350">
 
 						<h:panelGroup id="detalhesModUsuario">
 
@@ -148,8 +200,8 @@
 										itemValue="#{tipoDefeito.nome}" />
 
 								</p:selectManyCheckbox>
-
-								<p:commandButton value="Cadastrar"
+								
+								<p:commandButton value="Editar"
 									action="#{controleUsuarioBean.modificarControleUsuario()}"
 									update="@all" />
 

@@ -41,7 +41,11 @@ public class DefeitoSideServico {
 	public void modificarDefeitoSide(DefeitoSide defeitoSide, StatusDefeito statusDefeito) throws Exception {
 
 		try {
-
+			
+			Date date = new Date();
+			
+			defeitoSide.setDataAcao(date);
+			
 			defeitoSide.setStatusDefeito(statusDefeito);
 
 			this.entityManager.merge(defeitoSide);
@@ -248,6 +252,23 @@ public class DefeitoSideServico {
 			query.setParameter("param1", lote);
 			query.setParameter("param2", statusDefeito);
 			return query.getResultList();
+			
+		} catch (Exception e) {
+			
+			return new ArrayList<DefeitoSide>();
+			
+		}
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<DefeitoSide> listarDefeitosTipificacaoAbertos(StatusDefeito statusDefeito) {
+		
+		try {
+			
+			Query query = this.entityManager.createQuery("FROM DefeitoSide d WHERE d.statusDefeito =:param1");
+			query.setParameter("param1", statusDefeito);			
+			return query.getResultList();			
 			
 		} catch (Exception e) {
 			

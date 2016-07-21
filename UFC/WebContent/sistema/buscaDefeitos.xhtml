@@ -38,7 +38,7 @@
 				emptyMessage="Não há defeitos disponiveis"
 				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
 				paginator="true" style="margin-bottom:20px" rows="10"
-				currentPageReportTemplate="[{startRecord} de {endRecord}]">
+				currentPageReportTemplate="[{startRecord} de {endRecord}]" filteredValue="#{defeitoSideBean.listaFiltrada}">
 
 				<f:facet name="{Exporters}">
 
@@ -60,7 +60,7 @@
 				</p:column>
 
 				<p:column headerText="Tipificação" style="text-align: center;"
-					sortBy="#{defeitos.tipificacao.nome}">
+					filterBy="#{defeitos.tipificacao.nome}" filterMatchMode="contains">
 
 					<h:outputText value="#{defeitos.tipificacao.nome}" />
 

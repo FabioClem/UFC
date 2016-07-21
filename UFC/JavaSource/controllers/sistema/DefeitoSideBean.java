@@ -30,6 +30,8 @@ public class DefeitoSideBean {
 	private DefeitoSide defeitoSide;
 
 	private DefeitoSide defeitoSideModifica;
+	
+	private List<DefeitoSide> listaFiltrada;
 
 	@EJB
 	private DefeitoSideServico defeitoSideServico;
@@ -234,7 +236,7 @@ public class DefeitoSideBean {
 			
 			this.defeitoSideServico.modificarDefeitoSide(defeitoSide, statusDefeito);
 			
-			JSFUtil.addInfoMessage("Erro ao voltar defeito para fila");
+			JSFUtil.addInfoMessage("Defeito retornado com sucesso.");
 			
 		} catch (Exception e) {
 			
@@ -267,5 +269,13 @@ public class DefeitoSideBean {
 	public void setDefeitoSideModifica(DefeitoSide defeitoSideModifica) {
 		this.defeitoSideModifica = defeitoSideModifica;
 	}
+
+	public List<DefeitoSide> getListaFiltrada() {
+		return listaFiltrada;
+	}
+
+	public void setListaFiltrada(List<DefeitoSide> listaFiltrada) {
+		this.listaFiltrada = listaFiltrada;
+	}	
 
 }

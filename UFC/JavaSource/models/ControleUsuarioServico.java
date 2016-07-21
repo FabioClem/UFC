@@ -41,7 +41,7 @@ public class ControleUsuarioServico {
 
 			controleUsuario.setTipoDefeito(tipo);
 
-			controleUsuario.setAtivo(false);
+			controleUsuario.setAtivo(true);
 
 			this.entityManager.persist(controleUsuario);
 
@@ -70,7 +70,7 @@ public class ControleUsuarioServico {
 			}
 
 			controleUsuario.setTipoDefeito(tipo);
-
+			
 			this.entityManager.merge(controleUsuario);
 
 		} catch (Exception e) {
@@ -82,11 +82,12 @@ public class ControleUsuarioServico {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<ControleUsuario> listarControleUsuario() {
+	public List<ControleUsuario> listarControleUsuario(Boolean adm) {
 
 		try {
 
-			Query query = this.entityManager.createQuery("FROM ControleUsuario c");
+			Query query = this.entityManager.createQuery("FROM ControleUsuario c WHERE c.adm =:param1 ORDER BY c.ativo ASC");
+			query.setParameter("param1", adm);
 			return query.getResultList();
 
 		} catch (Exception e) {

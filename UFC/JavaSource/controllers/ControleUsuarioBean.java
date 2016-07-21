@@ -23,10 +23,14 @@ public class ControleUsuarioBean {
 	private ControleUsuario controleUsuario;
 
 	private ControleUsuario controleUsuarioModifica;
+	
+	private List<ControleUsuario> tabelaFiltrada;
 
 	private List<String> listaDoTipoDefeito;
 
 	private List<String> listaDoTipoDefeitoModifica;
+	
+	private List<String> listaDeTipificacao;
 
 	@EJB
 	private ControleUsuarioServico controleUsuarioServico;
@@ -98,9 +102,9 @@ public class ControleUsuarioBean {
 
 	}
 
-	public List<ControleUsuario> listarControleUsuario() {
+	public List<ControleUsuario> listarControleUsuario(Boolean adm) {
 
-		return this.controleUsuarioServico.listarControleUsuario();
+		return this.controleUsuarioServico.listarControleUsuario(adm);
 
 	}
 
@@ -149,5 +153,21 @@ public class ControleUsuarioBean {
 	public void setSessao(LoginBean sessao) {
 		this.sessao = sessao;
 	}
+
+	public List<ControleUsuario> getTabelaFiltrada() {
+		return tabelaFiltrada;
+	}
+
+	public void setTabelaFiltrada(List<ControleUsuario> tabelaFiltrada) {
+		this.tabelaFiltrada = tabelaFiltrada;
+	}
+
+	public List<String> getListaDeTipificacao() {
+		return listaDeTipificacao;
+	}
+
+	public void setListaDeTipificacao(List<String> listaDeTipificacao) {
+		this.listaDeTipificacao = listaDeTipificacao;
+	}	
 
 }

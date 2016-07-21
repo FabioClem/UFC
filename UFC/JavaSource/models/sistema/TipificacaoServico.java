@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import entidades.sistema.DefeitoSide;
 import entidades.sistema.Tipificacao;
 
 @Stateless
@@ -58,6 +59,42 @@ public class TipificacaoServico {
 
 		}
 		
-	}	
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Tipificacao> listarTipificacaoEspecifico(List<DefeitoSide> listaDefeitosSide) {
+		
+		try {
+			
+			StringBuffer sequencia = new StringBuffer();
+			
+			Integer totalLista = listaDefeitosSide.size();
+			
+			Integer count = 1;
+									
+			for (DefeitoSide defeitoSide : listaDefeitosSide) {
+				
+				String or = "";
+				
+				if (count != totalLista) {
+					
+					or = " OR ";
+					
+				}
+				
+				sequencia.append("t.id = '" + defeitoSide.getTipificacao().getId() + "' " + or + " ");
+				
+			}
+						
+			Query query = this.entityManager.createQuery("FROM Tipificacao t WHERE " + sequencia);
+			return query.getResultList();
+			
+		} catch (Exception e) {
+			
+			return new ArrayList<Tipificacao>();
+			
+		}
+		
+	}
 
 }

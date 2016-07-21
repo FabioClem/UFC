@@ -103,6 +103,26 @@
 					<h:outputText value="#{defeitoSide.usuarioEfika.login}" />
 
 				</p:column>
+				
+				<p:column headerText="Data da Ação">
+
+					<h:outputText value="#{defeitoSide.dataAcaoFormatado}" />
+
+				</p:column>
+				
+				<p:column headerText="Comentarios" style="height: 25px;">
+
+					<ui:repeat var="comentarios"
+						value="#{comentarioDefeitoBean.listarComentarioDefeito(defeitoSide)}">
+
+						<h:outputText value="#{comentarios.dataComentarioFormatada} " />
+						<h:outputText
+							value=" #{comentarios.defeitoSide.usuarioEfika.login} " />
+						<h:outputText value=" #{comentarios.descricao}" />
+
+					</ui:repeat>
+
+				</p:column>
 
 			</p:dataTable>
 			

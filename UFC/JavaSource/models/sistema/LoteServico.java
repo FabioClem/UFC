@@ -100,7 +100,7 @@ public class LoteServico {
 			 * SS/INSTANCIA/TIPIFICACAO/DATAABERTURA/DATAVENCIMENTO/FULLTEST/TIPODEFEITO 
 			 **/
 
-			if (!row[6].isEmpty() && row[6].equalsIgnoreCase("PROATIVO")) {
+			if (!row[1].isEmpty() && !row[2].isEmpty() && row[6].equalsIgnoreCase("PROATIVO")) {
 
 				/**
 				 *  INSTANCIA/TIPIFICACAO/TIPODEFEITO
