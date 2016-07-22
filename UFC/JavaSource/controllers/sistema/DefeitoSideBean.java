@@ -245,6 +245,14 @@ public class DefeitoSideBean {
 		}
 		
 	}
+	
+	public List<String> listarDefeitoSide() throws Exception {
+		
+		StatusDefeito statusDefeito = this.statusDefeitoServico.listarStatusDefeitoEspecifico("Aberto");
+		
+		return this.defeitoSideServico.listarDefeitoSideDistinc(statusDefeito);
+		
+	}
 
 	public DefeitoSide getDefeitoSide() {
 		return defeitoSide;

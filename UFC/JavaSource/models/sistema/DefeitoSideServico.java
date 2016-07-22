@@ -262,20 +262,20 @@ public class DefeitoSideServico {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<DefeitoSide> listarDefeitosTipificacaoAbertos(StatusDefeito statusDefeito) {
-		
-		try {
-			
-			Query query = this.entityManager.createQuery("FROM DefeitoSide d WHERE d.statusDefeito =:param1");
-			query.setParameter("param1", statusDefeito);			
-			return query.getResultList();			
-			
-		} catch (Exception e) {
-			
-			return new ArrayList<DefeitoSide>();
-			
-		}
-		
-	}
+	public List<String> listarDefeitoSideDistinc(StatusDefeito statusDefeito) {
 
+		try {
+
+			Query query = this.entityManager.createQuery("SELECT DISTINCT d.lote.nome FROM DefeitoSide d WHERE d.statusDefeito =:param1");
+			query.setParameter("param1", statusDefeito);
+			return query.getResultList();			
+
+		} catch (Exception e) {
+
+			return new ArrayList<String>();
+
+		}
+
+	}
+	
 }

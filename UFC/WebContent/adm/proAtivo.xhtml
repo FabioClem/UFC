@@ -94,15 +94,30 @@
 				<p:fieldset legend="Remover Lote" toggleable="true"
 					toggleSpeed="500">
 
-					<h:panelGrid columns="3">
+					<p:dataTable var="lots"
+						value="#{defeitoSideBean.listarDefeitoSide()}" style="width: 30%;"
+						emptyMessage="Não há lotes com defeitos abertos">
 
-						<h:outputText value="Nome do lote:" />
-						<p:inputText value="#{loteBean.lote.nome}" />
+						<p:column headerText="Lote">
 
-						<p:commandButton value="Remover"
-							action="#{loteBean.removerLoteEspecifico()}" update="@all" />
+							<h:outputText value="#{lots}" />
 
-					</h:panelGrid>
+						</p:column>
+
+						<p:column headerText="Ação" style="width: 45px;">
+
+							<p:commandButton icon="fa fa-remove"
+								title="Remover defeitos do lote"
+								action="#{loteBean.removerLoteEspecifico()}" update="@all">
+
+								<f:setPropertyActionListener value="#{lots}"
+									target="#{loteBean.lote.nome}" />
+
+							</p:commandButton>
+
+						</p:column>
+
+					</p:dataTable>
 
 				</p:fieldset>
 
