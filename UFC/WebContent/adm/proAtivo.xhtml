@@ -101,7 +101,7 @@
 
 						<p:commandButton value="Remover"
 							action="#{loteBean.removerLoteEspecifico()}" update="@all" />
-							
+
 					</h:panelGrid>
 
 				</p:fieldset>
@@ -114,7 +114,8 @@
 					emptyMessage="Não há defeitos sendo tratados"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
 					paginator="true" rows="10"
-					currentPageReportTemplate="[{startRecord} de {endRecord}]">
+					currentPageReportTemplate="[{startRecord} de {endRecord}]"
+					filteredValue="#{defeitoSideBean.listaFiltrada}">
 
 					<p:column headerText="Instancia">
 
@@ -135,7 +136,9 @@
 
 					</p:column>
 
-					<p:column headerText="Usuário">
+					<p:column headerText="Usuário"
+						filterBy="#{defeitoSideTratamento.usuarioEfika.login}"
+						filterMatchMode="contains">
 
 						<h:outputText value="#{defeitoSideTratamento.usuarioEfika.login}" />
 
@@ -148,12 +151,14 @@
 					</p:column>
 
 					<p:column headerText="Ações" style="width: 80px;">
-					
+
 						<p:commandButton icon="fa fa-arrow-circle-left"
-							title="Volta defeito para fila" action="#{defeitoSideBean.voltarDefeitoParaFila(defeitoSideTratamento)}" update="@all"/>
+							title="Volta defeito para fila"
+							action="#{defeitoSideBean.voltarDefeitoParaFila(defeitoSideTratamento)}"
+							update="@all" />
 						<p:commandButton icon="fa fa-arrow-circle-right"
 							action="#{defeitoSideBean.modificarDefeitoSideRemoveLista(defeitoSideTratamento)}"
-							title="Remove defeito da lista" update="@all"/>						
+							title="Remove defeito da lista" update="@all" />
 
 					</p:column>
 
