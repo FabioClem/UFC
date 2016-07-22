@@ -32,65 +32,9 @@
 
 	<ui:define name="conteudo">
 
-		<p:panel header="Upload">
+		<p:panel header="Pró-Ativo">
 
-			<h:form>
-
-				<!-- <p:fileUpload fileUploadListener="#{loteBean.loteDefeitoSide}"
-					mode="advanced" dragDropSupport="true" multiple="true"
-					update="messages, defeitosData" sizeLimit="5000000" fileLimit="5"
-					allowTypes="/(\.|\/)(csv)$/" label="Escolher Arquivo"
-					cancelLabel="Cancelar" />
-
-				<p:growl id="messages" showDetail="true" />
-
-				<br />
-
-				<p:dataTable id="defeitosData" var="defeitoSide"
-					selectionMode="single" rowKey="#{defeitoSide.id}"
-					value="#{defeitoSideBean.listarDefeitoSideEncerradoSemSS()}"
-					emptyMessage="Não há defeitos encerrados"
-					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-					paginator="true" style="margin-bottom:20px" rows="10"
-					currentPageReportTemplate="[{startRecord} de {endRecord}]">
-
-					<f:facet name="{Exporters}">
-
-						<h:commandLink>
-
-							<i class="fa fa-download"></i> 						
-						Exportar base						
-						<p:dataExporter type="xls" target="defeitosData"
-								fileName="DefeitoProAtivos" />
-
-						</h:commandLink>
-
-					</f:facet>
-
-					<p:column headerText="Instancia" style="text-align: center;">
-
-						<h:outputText value="#{defeitoSide.instancia}" />
-
-					</p:column>
-
-					<p:column headerText="Id" style="text-align: center;">
-
-						<h:outputText value="#{defeitoSide.id}" />
-
-					</p:column>
-
-				</p:dataTable> 
-
-				<h:outputText
-					value="O Upload do CSV deve ser seguido a seguinte ordem para realizar a integração: SS / ID"
-					style="font-weight: bold;" />
-
-				<br />
-				<h:outputText
-					value="O ID deve ser inserido conforme o ID do defeito informado na Tabela acima." />
-				<br />
-				<br />
-				-->
+			<h:form>				
 
 				<p:fieldset legend="Remover Lote" toggleable="true"
 					toggleSpeed="500">
