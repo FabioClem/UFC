@@ -48,8 +48,9 @@
 				<br />
 
 				<h:outputText
-					value="O Upload do CSV deve ser seguido a seguinte ordem para realizar a integração: SS / INSTANCIA / TIPIFICACAO / DATAABERTURA / DATAVENCIMENTO / FULLTEST / TIPODEFEITO" style="font-weight: bold;" />
-				
+					value="O Upload do CSV deve ser seguido a seguinte ordem para realizar a integração: SS / INSTANCIA / TIPIFICACAO / DATAABERTURA / DATAVENCIMENTO / FULLTEST / TIPODEFEITO / INFORMACÕES "
+					style="font-weight: bold;" />
+
 				<br />
 				<br />
 
@@ -63,12 +64,15 @@
 				<h:outputText
 					value="TIPODEFEITO -> LINHA, BANDA, TV e PROATIVO / Informação para entrada na fila específica." />
 				<br />
+				<h:outputText
+					value="INFORMAÇÕES -> Informações especificas que serão adicionadas separar a mesma com (ponto e virgula)" />
+				<br />
 				<br />
 				<h:outputText value="Defeitos" style="font-weight: bold;" />
 				<br />
 				<h:outputText
 					value="Para defeitos de LINHA, BANDA e TV deve-se preencher os campos SS / INSTANCIA / TIPIFICACAO / TIPODEFEITO" />
-				<br/>
+				<br />
 				<h:outputText
 					value="Os campos DATAABERTURA / DATAVENCIMENTO / FULLTEST, se estiverem vazios vão ser inseridos informações padrões, nos campos de data será inserido a data de hoje, e no FULLTEST a informação será NÂO " />
 				<br />
@@ -77,13 +81,15 @@
 				<br />
 				<h:outputText
 					value="Para defeitos Pró-Ativos deve-se preencher somente os campos INSTANCIA / TIPIFICACAO / TIPODEFEITO, se inserido outras informações as mesmas não serão inseridas." />
-				<br/>
-				<h:outputText value="O campo TIPODEFEITO deve ser preenchido como PROATIVO."/>				
 				<br />
-				<br />
-				
 				<h:outputText
-					value="Caso padrão não for seguido o defeito não será integrado na ferramenta." style="font-weight: bold;"/>
+					value="O campo TIPODEFEITO deve ser preenchido como PROATIVO." />
+				<br />
+				<br />
+
+				<h:outputText
+					value="Caso padrão não for seguido o defeito não será integrado na ferramenta."
+					style="font-weight: bold;" />
 
 			</h:form>
 

@@ -49,8 +49,9 @@ public class LoteBean {
 		
 		try {
 			
-			StatusDefeito statusDefeito = this.statusDefeitoServico.listarStatusDefeitoEspecifico("Aberto");			
-			this.loteServico.cadastrarLote(file, sessao.getUsuario(), statusDefeito);			
+			StatusDefeito statusDefeito = this.statusDefeitoServico.listarStatusDefeitoEspecifico("Aberto");
+			this.loteServico.cadastrarLote(file, sessao.getUsuario(), statusDefeito);
+			JSFUtil.addInfoMessage("Lote cadastrado com sucesso.");
 			
 		} catch (Exception e) {
 			
