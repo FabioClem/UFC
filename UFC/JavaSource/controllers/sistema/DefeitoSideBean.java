@@ -1,6 +1,7 @@
 package controllers.sistema;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -33,6 +34,8 @@ public class DefeitoSideBean {
 	
 	private List<DefeitoSide> listaFiltrada;
 
+	private List<String> listInfos;
+	
 	@EJB
 	private DefeitoSideServico defeitoSideServico;
 
@@ -163,6 +166,7 @@ public class DefeitoSideBean {
 		try {
 
 			this.defeitoSide = this.defeitoSideServico.listarDefeitoSideEspecifico(this.defeitoSide, this.sessao.getUsuario());
+			this.splitInformacoes();
 
 		} catch (Exception e) {
 
@@ -171,6 +175,14 @@ public class DefeitoSideBean {
 
 		}
 
+	}
+	
+	public void splitInformacoes() {
+		
+		String info = this.defeitoSide.getInformacoes();
+				
+		this.listInfos = Arrays.asList(info.split(";"));
+				
 	}
 
 	public List<DefeitoSide> listarMeusDefeitos() throws Exception {		
@@ -284,6 +296,14 @@ public class DefeitoSideBean {
 
 	public void setListaFiltrada(List<DefeitoSide> listaFiltrada) {
 		this.listaFiltrada = listaFiltrada;
+	}
+
+	public List<String> getListInfos() {
+		return listInfos;
+	}
+
+	public void setListInfos(List<String> listInfos) {
+		this.listInfos = listInfos;
 	}	
 
 }

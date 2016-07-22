@@ -45,13 +45,20 @@
 					<h:outputText value="Data integrado: " />
 					<h:outputText
 						value="#{defeitoSideBean.defeitoSide.dataIntegradoFormatado}" />
+					
+					<h:outputText value="Informações: " />
+					<ui:repeat var="info" value="#{defeitoSideBean.listInfos}">
+					
+						<h:outputText value="#{info}" />
+						<br/>
+					
+					</ui:repeat>
+					
 
 				</p:panelGrid>
 
 				<br />
-
-
-
+				
 			</p:fieldset>
 
 			<br />

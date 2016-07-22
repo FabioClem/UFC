@@ -42,6 +42,8 @@ public class DefeitoSide {
 	
 	@ManyToOne
 	private MotivoEncerramento motivoEncerramento;
+	
+	private String informacoes;
 
 	public Integer getId() {
 		return id;
@@ -133,6 +135,14 @@ public class DefeitoSide {
 
 	public void setMotivoEncerramento(MotivoEncerramento motivoEncerramento) {
 		this.motivoEncerramento = motivoEncerramento;
+	}	
+
+	public String getInformacoes() {
+		return informacoes;
+	}
+
+	public void setInformacoes(String informacoes) {
+		this.informacoes = informacoes;
 	}
 
 	@Override

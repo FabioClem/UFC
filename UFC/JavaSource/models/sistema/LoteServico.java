@@ -97,7 +97,7 @@ public class LoteServico {
 
 			/**
 			 * PADROES
-			 * SS/INSTANCIA/TIPIFICACAO/DATAABERTURA/DATAVENCIMENTO/FULLTEST/TIPODEFEITO 
+			 * SS/INSTANCIA/TIPIFICACAO/DATAABERTURA/DATAVENCIMENTO/FULLTEST/TIPODEFEITO/INFORMACÕES
 			 **/
 
 			if (!row[1].isEmpty() && !row[2].isEmpty() && row[6].equalsIgnoreCase("PROATIVO")) {
@@ -115,6 +115,7 @@ public class LoteServico {
 				defeitoSide.setStatusDefeito(statusDefeito);
 				defeitoSide.setLote(lote);
 				defeitoSide.setSs("");
+				defeitoSide.setInformacoes(row[7]);
 
 				this.entityManager.persist(defeitoSide);
 

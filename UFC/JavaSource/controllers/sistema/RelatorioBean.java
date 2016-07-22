@@ -12,10 +12,12 @@ import javax.faces.bean.ViewScoped;
 
 import org.primefaces.model.chart.PieChartModel;
 
+import entidades.sistema.ComentarioDefeito;
 import entidades.sistema.DefeitoSide;
 import entidades.sistema.MotivoEncerramento;
 import entidades.sistema.StatusDefeito;
 import entidades.sistema.Tipificacao;
+import models.sistema.ComentarioDefeitoServico;
 import models.sistema.DefeitoSideServico;
 import models.sistema.MotivoEncerramentoServico;
 import models.sistema.StatusDefeitoServico;
@@ -25,115 +27,118 @@ import models.sistema.TipificacaoServico;
 @ManagedBean
 @ViewScoped
 public class RelatorioBean implements Serializable {
-	
+
 	private List<DefeitoSide> defeitoSides;
-	
+
 	private Date dataInicio;
-	
+
 	private Date dataFim;
-	
+
 	private PieChartModel graficoDefeitoSide;
-	
+
 	private PieChartModel graficoDefeitoSideMotivoEncerramento;
-	
+
 	private PieChartModel graficoDefeitoSideTipificacao; 
 
 	@EJB
 	private DefeitoSideServico defeitoSideServico;
-	
+
 	@EJB
 	private StatusDefeitoServico statusDefeitoServico;
-	
+
 	@EJB
 	private MotivoEncerramentoServico motivoEncerramentoServico;
-	
+
 	@EJB
 	private TipificacaoServico tipificacaoServico;
-	
+
+	@EJB
+	private ComentarioDefeitoServico comentarioDefeitoServico;
+
 	@PostConstruct
 	public void init() {
-		
+
 		this.criarGraficos();
-		
+
 	}
-	
+
 	public RelatorioBean() {		
-		
+
 	}
-	
+
 	public void criarGraficos() {
-		
+
 		this.graficoDefeitoSide();
 		this.graficoDefeitoSideMotivoEncerramento();
 		this.graficoDefeitoSideTipificacao();
-		
+
 	}
-	
+
 	public void graficoDefeitoSide() {
-		
+
 		this.graficoDefeitoSide = new PieChartModel();
-		
+
 		List<StatusDefeito> listaDeStatus = this.statusDefeitoServico.listarStatusDefeitoAtivo();
-		
+
 		for (StatusDefeito statusDefeito : listaDeStatus) {
-			
+
 			Integer total = this.defeitoSideServico.listarDefeitoSideStatus(statusDefeito).size();
-			
+
 			this.graficoDefeitoSide.set(statusDefeito.getNome(), total);
-			
+
 		}	
-		
+
 		this.graficoDefeitoSide.setSeriesColors("003245, 004356, 005466, 006476, 007486, 008597, 0095A7, 005B7, 0086C7, 00C6D7");
 		this.graficoDefeitoSide.setTitle("Defeitos Pró-Ativo ");
 		this.graficoDefeitoSide.setLegendPosition("sw");
 		this.graficoDefeitoSide.setShowDataLabels(true);
-		
+
 	}
-	
+
 	public void graficoDefeitoSideMotivoEncerramento() {
-		
+
 		this.graficoDefeitoSideMotivoEncerramento = new PieChartModel();
-		
+
 		List<MotivoEncerramento> listaDeMotivoEncerramento = this.motivoEncerramentoServico.listarMotivoEncerramentoAtivo();
-		
+
 		for (MotivoEncerramento motivoEncerramento : listaDeMotivoEncerramento) {
-			
+
 			Integer total = this.defeitoSideServico.listarDefeitoSideMotivoEncerramento(motivoEncerramento).size();
-			
+
 			this.graficoDefeitoSideMotivoEncerramento.set(motivoEncerramento.getNome(), total);
-			
+
 		}
-		
+
 		this.graficoDefeitoSideMotivoEncerramento.setSeriesColors("003245, 004356, 005466, 006476, 007486, 008597, 0095A7, 005B7, 0086C7, 00C6D7");
 		this.graficoDefeitoSideMotivoEncerramento.setTitle("Motivo de encerramento Pró-Ativo");
 		this.graficoDefeitoSideMotivoEncerramento.setLegendPosition("sw");
 		this.graficoDefeitoSideMotivoEncerramento.setShowDataLabels(true);
-		
+
 	}
-	
+
 	public void graficoDefeitoSideTipificacao() {
-		
+
 		this.graficoDefeitoSideTipificacao = new PieChartModel();
-		
+
 		List<Tipificacao> listaDeTipificacao = this.tipificacaoServico.listarTipificacao();
-		
+
 		for (Tipificacao tipificacao : listaDeTipificacao) {			
-			
+
 			Integer total = this.defeitoSideServico.listarDefeitoSideTipificacao(tipificacao).size();
-			
+
 			this.graficoDefeitoSideTipificacao.set(tipificacao.getNome(), total);
-			
+
 		}
-		
+
 		this.graficoDefeitoSideTipificacao.setSeriesColors("003245, 004356, 005466, 006476, 007486, 008597, 0095A7, 005B7, 0086C7, 00C6D7");
 		this.graficoDefeitoSideTipificacao.setTitle("Tipificação Pró-Ativo");
 		this.graficoDefeitoSideTipificacao.setLegendPosition("sw");
 		this.graficoDefeitoSideTipificacao.setShowDataLabels(true);
-		
+
 	}
-	
+
 	public void listarDefeitoSideEncerrado() throws Exception {
-		
+
 		Calendar cal = Calendar.getInstance();
 
 		if (this.dataInicio == null) {
@@ -171,7 +176,23 @@ public class RelatorioBean implements Serializable {
 		StatusDefeito statusDefeito = this.statusDefeitoServico.listarStatusDefeitoEspecifico("Encerrado");
 
 		this.defeitoSides = this.defeitoSideServico.listarDefeitoSideEncerrado(statusDefeito, this.dataInicio, this.dataFim);
+
+	}
+
+	public String listarComentariosDefeito(DefeitoSide defeitoSide) {
+
+		List<ComentarioDefeito> listaDeComents = this.comentarioDefeitoServico.listarComentarioDefeito(defeitoSide);
+
+		String comentsConcat = "";
+
+		for (ComentarioDefeito comentarioDefeito : listaDeComents) {
+
+			comentsConcat = comentarioDefeito.getDataComentarioFormatada() + " " + comentarioDefeito.getDefeitoSide().getUsuarioEfika().getLogin() + ": " + comentarioDefeito.getDescricao() + "\n" + comentsConcat;
+
+		}
 		
+		return comentsConcat;
+
 	}
 
 	public Date getDataInicio() {
@@ -221,5 +242,5 @@ public class RelatorioBean implements Serializable {
 	public void setGraficoDefeitoSideTipificacao(PieChartModel graficoDefeitoSideTipificacao) {
 		this.graficoDefeitoSideTipificacao = graficoDefeitoSideTipificacao;
 	}	
-	
+
 }

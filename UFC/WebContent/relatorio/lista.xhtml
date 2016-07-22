@@ -112,15 +112,7 @@
 				
 				<p:column headerText="Comentarios" style="height: 25px;">
 
-					<ui:repeat var="comentarios"
-						value="#{comentarioDefeitoBean.listarComentarioDefeito(defeitoSide)}">
-
-						<h:outputText value="#{comentarios.dataComentarioFormatada} " />
-						<h:outputText
-							value=" #{comentarios.defeitoSide.usuarioEfika.login} " />
-						<h:outputText value=" #{comentarios.descricao}" />
-
-					</ui:repeat>
+					<h:outputText value="#{relatorioBean.listarComentariosDefeito(defeitoSide)}"/>
 
 				</p:column>
 
