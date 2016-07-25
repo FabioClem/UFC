@@ -52,8 +52,7 @@
 						<h:outputText value="#{info}" />
 						<br/>
 					
-					</ui:repeat>
-					
+					</ui:repeat>				
 
 				</p:panelGrid>
 
@@ -80,9 +79,9 @@
 					<ui:repeat var="comentarios"
 						value="#{comentarioDefeitoBean.listarComentarioDefeito(defeitoSideBean.defeitoSide)}">
 
-						<h:outputText value="#{comentarios.dataComentarioFormatada} " />
+						<h:outputText value="#{comentarios.dataComentarioFormatada} - " />
 						<h:outputText
-							value=" #{comentarios.defeitoSide.usuarioEfika.login} " />
+							value=" #{comentarios.defeitoSide.usuarioEfika.login} - " />
 						<h:outputText value=" #{comentarios.descricao}" />
 						<br />
 

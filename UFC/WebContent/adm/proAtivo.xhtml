@@ -40,7 +40,7 @@
 					toggleSpeed="500">
 
 					<p:dataTable var="lots"
-						value="#{defeitoSideBean.listarDefeitoSide()}" style="width: 30%;"
+						value="#{defeitoSideBean.listarLotes()}" style="width: 30%;"
 						emptyMessage="Não há lotes com defeitos abertos">
 
 						<p:column headerText="Lote">
@@ -57,7 +57,9 @@
 
 								<f:setPropertyActionListener value="#{lots}"
 									target="#{loteBean.lote.nome}" />
-
+								
+								<f:actionListener binding="#{atendimentoBean.buscarDefeitosSideAtivo()}"/>
+								
 							</p:commandButton>
 
 						</p:column>

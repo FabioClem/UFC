@@ -75,13 +75,14 @@ public class DefeitoSideServico {
 
 	}
 
-	public DefeitoSide listarDefeitoSideEspecifico(DefeitoSide defeitoSide, UsuarioEfika usuarioEfika) throws Exception {
+	public DefeitoSide listarDefeitoSideEspecifico(DefeitoSide defeitoSide, UsuarioEfika usuarioEfika, StatusDefeito statusDefeito) throws Exception {
 
 		try {
 
-			Query query = this.entityManager.createQuery("FROM DefeitoSide d WHERE d.id =:param1 AND d.usuarioEfika =:param2");
+			Query query = this.entityManager.createQuery("FROM DefeitoSide d WHERE d.id =:param1 AND d.usuarioEfika =:param2 AND d.statusDefeito =:param3");
 			query.setParameter("param1", defeitoSide.getId());
 			query.setParameter("param2", usuarioEfika);
+			query.setParameter("param3", statusDefeito);
 			return (DefeitoSide) query.getSingleResult();
 
 		} catch (Exception e) {

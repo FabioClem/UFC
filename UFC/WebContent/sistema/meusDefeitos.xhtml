@@ -34,9 +34,13 @@
 				rowKey="#{defeitos.id}"
 				value="#{defeitoSideBean.listarMeusDefeitos()}"
 				emptyMessage="Não há defeitos disponiveis"
-				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
 				paginator="true" style="margin-bottom:20px" rows="10"
 				currentPageReportTemplate="[{startRecord} de {endRecord}]" rendered="#{controleUsuarioBean.validaControleUsuario('Pro-Ativo')}">
+				
+				<f:facet name="header">
+					Defeitos Pró-Ativo
+				</f:facet>
 
 				<p:column headerText="Instancia" style="text-align: center;">
 

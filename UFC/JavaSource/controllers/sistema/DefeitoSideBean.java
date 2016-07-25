@@ -116,7 +116,7 @@ public class DefeitoSideBean {
 
 		try {
 
-			StatusDefeito statusDefeito = this.statusDefeitoServico.listarStatusDefeitoEspecifico("Removido Fila");			
+			StatusDefeito statusDefeito = this.statusDefeitoServico.listarStatusDefeitoEspecifico("Removido Fila");
 			this.defeitoSideServico.modificarDefeitoSide(this.defeitoSide, statusDefeito);
 			this.redirecionaParaPaginaMeusDefeitos();
 			JSFUtil.addInfoMessage("Ação realizada com sucesso.");
@@ -165,7 +165,8 @@ public class DefeitoSideBean {
 
 		try {
 
-			this.defeitoSide = this.defeitoSideServico.listarDefeitoSideEspecifico(this.defeitoSide, this.sessao.getUsuario());
+			StatusDefeito statusDefeito = this.statusDefeitoServico.listarStatusDefeitoEspecifico("Em tratamento");
+			this.defeitoSide = this.defeitoSideServico.listarDefeitoSideEspecifico(this.defeitoSide, this.sessao.getUsuario(), statusDefeito);
 			this.splitInformacoes();
 
 		} catch (Exception e) {
@@ -198,6 +199,7 @@ public class DefeitoSideBean {
 		try {
 
 			context.redirect(context.getRequestContextPath() + "/restrito.jsf");
+			JSFUtil.addErrorMessage("Defeito não existe ou não está associado a matricula.");
 
 		} catch (IOException e) {
 
@@ -258,7 +260,7 @@ public class DefeitoSideBean {
 		
 	}
 	
-	public List<String> listarDefeitoSide() throws Exception {
+	public List<String> listarLotes() throws Exception {
 		
 		StatusDefeito statusDefeito = this.statusDefeitoServico.listarStatusDefeitoEspecifico("Aberto");
 		

@@ -47,7 +47,7 @@ public class AtendimentoBean {
 		
 		this.buscarDefeitosSideAtivo();
 		
-		timerBuscaDefeitosAtivo.schedule(buscaDefeitosAtivo, 30000, 30000);
+		timerBuscaDefeitosAtivo.schedule(buscaDefeitosAtivo, 15000, 15000);
 		
 	}
 
