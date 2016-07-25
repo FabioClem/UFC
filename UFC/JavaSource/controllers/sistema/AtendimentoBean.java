@@ -20,7 +20,7 @@ import util.JSFUtil;
 @ApplicationScoped
 @Singleton
 public class AtendimentoBean {
-	
+		
 	public List<DefeitoSide> listaDeDefeitoSide;
 	
 	Timer timerBuscaDefeitosAtivo = new Timer();
