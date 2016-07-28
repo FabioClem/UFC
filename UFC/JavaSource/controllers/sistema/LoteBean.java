@@ -15,6 +15,7 @@ import entidades.sistema.DefeitoSide;
 import entidades.sistema.Lote;
 import entidades.sistema.StatusDefeito;
 import models.sistema.DefeitoSideServico;
+import models.sistema.ImportaCSVServico;
 import models.sistema.LoteServico;
 import models.sistema.StatusDefeitoServico;
 import util.JSFUtil;
@@ -37,6 +38,9 @@ public class LoteBean {
 	@EJB
 	private DefeitoSideServico defeitoSideServico;
 	
+	@EJB
+	private ImportaCSVServico importaCSVServico;
+	
 	public LoteBean() {
 		
 		this.lote = new Lote();
@@ -50,7 +54,7 @@ public class LoteBean {
 		try {
 			
 			StatusDefeito statusDefeito = this.statusDefeitoServico.listarStatusDefeitoEspecifico("Aberto");
-			this.loteServico.cadastrarLote(file, sessao.getUsuario(), statusDefeito);
+			this.importaCSVServico.cadastrarLote(file, sessao.getUsuario(), statusDefeito);
 			JSFUtil.addInfoMessage("Lote cadastrado com sucesso.");
 			
 		} catch (Exception e) {
@@ -58,22 +62,6 @@ public class LoteBean {
 			JSFUtil.addErrorMessage(e.getMessage());
 
 		}		
-		
-	}
-	
-	public void loteDefeitoSide(FileUploadEvent event) {
-		
-		UploadedFile file = event.getFile();
-		
-		try {
-						
-			this.loteServico.loteDefeitoSide(file, this.sessao.getUsuario());
-			
-		} catch (Exception e) {
-			
-			JSFUtil.addErrorMessage(e.getMessage());
-			
-		}
 		
 	}
 	

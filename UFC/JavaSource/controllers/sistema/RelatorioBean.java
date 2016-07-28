@@ -14,12 +14,12 @@ import org.primefaces.model.chart.PieChartModel;
 
 import entidades.sistema.ComentarioDefeito;
 import entidades.sistema.DefeitoSide;
-import entidades.sistema.MotivoEncerramento;
+import entidades.sistema.MotivoEncerramentoDefeitoSide;
 import entidades.sistema.StatusDefeito;
 import entidades.sistema.Tipificacao;
 import models.sistema.ComentarioDefeitoServico;
 import models.sistema.DefeitoSideServico;
-import models.sistema.MotivoEncerramentoServico;
+import models.sistema.MotivoEncerramentoDefeitoSideServico;
 import models.sistema.StatusDefeitoServico;
 import models.sistema.TipificacaoServico;
 
@@ -47,7 +47,7 @@ public class RelatorioBean implements Serializable {
 	private StatusDefeitoServico statusDefeitoServico;
 
 	@EJB
-	private MotivoEncerramentoServico motivoEncerramentoServico;
+	private MotivoEncerramentoDefeitoSideServico motivoEncerramentoServico;
 
 	@EJB
 	private TipificacaoServico tipificacaoServico;
@@ -99,9 +99,9 @@ public class RelatorioBean implements Serializable {
 
 		this.graficoDefeitoSideMotivoEncerramento = new PieChartModel();
 
-		List<MotivoEncerramento> listaDeMotivoEncerramento = this.motivoEncerramentoServico.listarMotivoEncerramentoAtivo();
+		List<MotivoEncerramentoDefeitoSide> listaDeMotivoEncerramento = this.motivoEncerramentoServico.listarMotivoEncerramentoAtivo();
 
-		for (MotivoEncerramento motivoEncerramento : listaDeMotivoEncerramento) {
+		for (MotivoEncerramentoDefeitoSide motivoEncerramento : listaDeMotivoEncerramento) {
 
 			Integer total = this.defeitoSideServico.listarDefeitoSideMotivoEncerramento(motivoEncerramento).size();
 

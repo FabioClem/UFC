@@ -6,8 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ufc_motivo_encerramento")
-public class MotivoEncerramento {
+@Table(name="ufc_motivo_encerramento_defeito_side")
+public class MotivoEncerramentoDefeitoSide {
 
 	@Id
 	@GeneratedValue
@@ -17,8 +17,6 @@ public class MotivoEncerramento {
 	
 	private Boolean ativo = false;
 	
-	private String codigo;
-
 	public Integer getId() {
 		return id;
 	}
@@ -43,14 +41,6 @@ public class MotivoEncerramento {
 		this.ativo = ativo;
 	}
 
-	public String getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -67,7 +57,7 @@ public class MotivoEncerramento {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MotivoEncerramento other = (MotivoEncerramento) obj;
+		MotivoEncerramentoDefeitoSide other = (MotivoEncerramentoDefeitoSide) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

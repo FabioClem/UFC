@@ -8,15 +8,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import entidades.sistema.MotivoEncerramento;
+import entidades.sistema.MotivoEncerramentoDefeitoSide;
 
 @Stateless
-public class MotivoEncerramentoServico {
+public class MotivoEncerramentoDefeitoSideServico {
 
 	@PersistenceContext(unitName = "vu")
 	private EntityManager entityManager;
 	
-	public void cadastrarMotivoEncerramento(MotivoEncerramento motivoEncerramento) throws Exception {
+	public void cadastrarMotivoEncerramento(MotivoEncerramentoDefeitoSide motivoEncerramento) throws Exception {
 		
 		try {
 			
@@ -36,7 +36,7 @@ public class MotivoEncerramentoServico {
 		
 	}
 	
-	public void modificarMotivoEncerramento(MotivoEncerramento motivoEncerramento) throws Exception {
+	public void modificarMotivoEncerramento(MotivoEncerramentoDefeitoSide motivoEncerramento) throws Exception {
 		
 		try {
 			
@@ -51,33 +51,33 @@ public class MotivoEncerramentoServico {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<MotivoEncerramento> listarMotivoEncerramento() {
+	public List<MotivoEncerramentoDefeitoSide> listarMotivoEncerramento() {
 		
 		try {
 			
-			Query query = this.entityManager.createQuery("FROM MotivoEncerramento m");
+			Query query = this.entityManager.createQuery("FROM MotivoEncerramentoDefeitoSide m");
 			return query.getResultList();
 			
 		} catch (Exception e) {
 			
-			return new ArrayList<MotivoEncerramento>();
+			return new ArrayList<MotivoEncerramentoDefeitoSide>();
 
 		}
 		
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<MotivoEncerramento> listarMotivoEncerramentoAtivo() {
+	public List<MotivoEncerramentoDefeitoSide> listarMotivoEncerramentoAtivo() {
 		
 		try {
 			
-			Query query = this.entityManager.createQuery("FROM MotivoEncerramento m WHERE m.ativo =:param1");
+			Query query = this.entityManager.createQuery("FROM MotivoEncerramentoDefeitoSide m WHERE m.ativo =:param1");
 			query.setParameter("param1", true);
 			return query.getResultList();
 			
 		} catch (Exception e) {
 			
-			return new ArrayList<MotivoEncerramento>();
+			return new ArrayList<MotivoEncerramentoDefeitoSide>();
 			
 		}
 		

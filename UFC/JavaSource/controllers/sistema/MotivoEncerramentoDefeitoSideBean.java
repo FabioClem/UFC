@@ -6,27 +6,27 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import entidades.sistema.MotivoEncerramento;
-import models.sistema.MotivoEncerramentoServico;
+import entidades.sistema.MotivoEncerramentoDefeitoSide;
+import models.sistema.MotivoEncerramentoDefeitoSideServico;
 import util.JSFUtil;
 
 @ManagedBean
 @ViewScoped
-public class MotivoEncerramentoBean {
+public class MotivoEncerramentoDefeitoSideBean {
 
-	private MotivoEncerramento motivoEncerramento;
+	private MotivoEncerramentoDefeitoSide motivoEncerramento;
 
-	private MotivoEncerramento motivoEncerramentoModifica;
+	private MotivoEncerramentoDefeitoSide motivoEncerramentoModifica;
 
 	@EJB
-	private MotivoEncerramentoServico motivoEncerramentoServico;
+	private MotivoEncerramentoDefeitoSideServico motivoEncerramentoServico;
 
 
-	public MotivoEncerramentoBean() {
+	public MotivoEncerramentoDefeitoSideBean() {
 
-		this.motivoEncerramento = new MotivoEncerramento();
+		this.motivoEncerramento = new MotivoEncerramentoDefeitoSide();
 
-		this.motivoEncerramentoModifica = new MotivoEncerramento();
+		this.motivoEncerramentoModifica = new MotivoEncerramentoDefeitoSide();
 
 	}
 
@@ -36,7 +36,7 @@ public class MotivoEncerramentoBean {
 			
 			this.motivoEncerramentoServico.cadastrarMotivoEncerramento(this.motivoEncerramento);
 			JSFUtil.addInfoMessage("Motivo cadastrado com sucesso.");
-			this.motivoEncerramento = new MotivoEncerramento();
+			this.motivoEncerramento = new MotivoEncerramentoDefeitoSide();
 
 		} catch (Exception e) {
 
@@ -52,7 +52,7 @@ public class MotivoEncerramentoBean {
 
 			this.motivoEncerramentoServico.modificarMotivoEncerramento(this.motivoEncerramentoModifica);
 			JSFUtil.addInfoMessage("Motivo modificado com sucesso.");			
-			this.motivoEncerramentoModifica = new MotivoEncerramento();
+			this.motivoEncerramentoModifica = new MotivoEncerramentoDefeitoSide();
 
 		} catch (Exception e) {
 
@@ -62,34 +62,34 @@ public class MotivoEncerramentoBean {
 
 	}
 
-	public List<MotivoEncerramento> listarMotivoEncerramento() {
+	public List<MotivoEncerramentoDefeitoSide> listarMotivoEncerramento() {
 
 		return this.motivoEncerramentoServico.listarMotivoEncerramento();
 
 	}
 
-	public List<MotivoEncerramento> listarMotivoEncerramentoAtivo() {
+	public List<MotivoEncerramentoDefeitoSide> listarMotivoEncerramentoAtivo() {
 
 		return this.motivoEncerramentoServico.listarMotivoEncerramentoAtivo();
 
 	}
 	
-	public MotivoEncerramento getMotivoEncerramento() {
+	public MotivoEncerramentoDefeitoSide getMotivoEncerramento() {
 		return motivoEncerramento;
 	}
 
 
-	public void setMotivoEncerramento(MotivoEncerramento motivoEncerramento) {
+	public void setMotivoEncerramento(MotivoEncerramentoDefeitoSide motivoEncerramento) {
 		this.motivoEncerramento = motivoEncerramento;
 	}
 
 
-	public MotivoEncerramento getMotivoEncerramentoModifica() {
+	public MotivoEncerramentoDefeitoSide getMotivoEncerramentoModifica() {
 		return motivoEncerramentoModifica;
 	}
 
 
-	public void setMotivoEncerramentoModifica(MotivoEncerramento motivoEncerramentoModifica) {
+	public void setMotivoEncerramentoModifica(MotivoEncerramentoDefeitoSide motivoEncerramentoModifica) {
 		this.motivoEncerramentoModifica = motivoEncerramentoModifica;
 	}
 

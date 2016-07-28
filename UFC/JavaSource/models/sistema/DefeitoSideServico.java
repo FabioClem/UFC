@@ -12,7 +12,7 @@ import javax.persistence.Query;
 import entidades.UsuarioEfika;
 import entidades.sistema.DefeitoSide;
 import entidades.sistema.Lote;
-import entidades.sistema.MotivoEncerramento;
+import entidades.sistema.MotivoEncerramentoDefeitoSide;
 import entidades.sistema.StatusDefeito;
 import entidades.sistema.Tipificacao;
 
@@ -182,7 +182,7 @@ public class DefeitoSideServico {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<DefeitoSide> listarDefeitoSideMotivoEncerramento(MotivoEncerramento motivoEncerramento) {
+	public List<DefeitoSide> listarDefeitoSideMotivoEncerramento(MotivoEncerramentoDefeitoSide motivoEncerramento) {
 		
 		try {
 			

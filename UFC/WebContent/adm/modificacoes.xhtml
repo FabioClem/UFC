@@ -229,36 +229,26 @@
 						<h:outputText value="Motivo Encerramento "
 							style="font-weight:bold" />
 						<p:inputText
-							value="#{motivoEncerramentoBean.motivoEncerramento.nome}" />
-
-						<h:outputText value="Código " style="font-weight:bold" />
-						<p:inputText
-							value="#{motivoEncerramentoBean.motivoEncerramento.codigo}" />
+							value="#{motivoEncerramentoDefeitoSideBean.motivoEncerramento.nome}" />
 
 						<h:outputText value="Ativo " />
 						<p:selectBooleanCheckbox
-							value="#{motivoEncerramentoBean.motivoEncerramento.ativo}" />
+							value="#{motivoEncerramentoDefeitoSideBean.motivoEncerramento.ativo}" />
 
 						<p:commandButton value="Cadastrar"
-							action="#{motivoEncerramentoBean.cadastrarMotivoEncerramento()}"
+							action="#{motivoEncerramentoDefeitoSideBean.cadastrarMotivoEncerramento()}"
 							update="@all" />
 
 					</h:panelGrid>
 
 					<p:dataTable
-						value="#{motivoEncerramentoBean.listarMotivoEncerramento()}"
+						value="#{motivoEncerramentoDefeitoSideBean.listarMotivoEncerramento()}"
 						var="motivo" style="margin-top: 20px;"
 						emptyMessage="Não há motivo registrados">
 
 						<p:column headerText="Motivo" style="text-align: center;">
 
 							<h:outputText value="#{motivo.nome}" />
-
-						</p:column>
-
-						<p:column headerText="Código" style="text-align: center;">
-
-							<h:outputText value="#{motivo.codigo}" />
 
 						</p:column>
 
@@ -278,7 +268,7 @@
 								icon="ui-icon-pencil" title="Edita Código">
 
 								<f:setPropertyActionListener value="#{motivo}"
-									target="#{motivoEncerramentoBean.motivoEncerramentoModifica}" />
+									target="#{motivoEncerramentoDefeitoSideBean.motivoEncerramentoModifica}" />
 
 							</p:commandButton>
 
@@ -297,18 +287,14 @@
 								<h:outputText value="Motivo Encerramento "
 									style="font-weight:bold" />
 								<p:inputText
-									value="#{motivoEncerramentoBean.motivoEncerramentoModifica.nome}" />
-
-								<h:outputText value="Código " style="font-weight:bold" />
-								<p:inputText
-									value="#{motivoEncerramentoBean.motivoEncerramentoModifica.codigo}" />
+									value="#{motivoEncerramentoDefeitoSideBean.motivoEncerramentoModifica.nome}" />
 
 								<h:outputText value="Ativo " />
 								<p:selectBooleanCheckbox
-									value="#{motivoEncerramentoBean.motivoEncerramentoModifica.ativo}" />
+									value="#{motivoEncerramentoDefeitoSideBean.motivoEncerramentoModifica.ativo}" />
 
 								<p:commandButton value="Cadastrar"
-									action="#{motivoEncerramentoBean.modificarMotivoEncerramento()}"
+									action="#{motivoEncerramentoDefeitoSideBean.modificarMotivoEncerramento()}"
 									update="@all" />
 
 							</h:panelGrid>

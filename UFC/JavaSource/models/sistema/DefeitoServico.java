@@ -12,7 +12,7 @@ import javax.persistence.Query;
 import entidades.UsuarioEfika;
 import entidades.sistema.Defeito;
 import entidades.sistema.DefeitoSide;
-import entidades.sistema.MotivoEncerramento;
+import entidades.sistema.MotivoEncerramentoDefeitoSide;
 import entidades.sistema.StatusDefeito;
 import entidades.sistema.TipoDefeito;
 
@@ -96,7 +96,7 @@ public class DefeitoServico {
 		
 	}
 	
-	public void encerrarDefeito(Defeito defeito, StatusDefeito statusDefeito, MotivoEncerramento motivoEncerramento) throws Exception {
+	public void encerrarDefeito(Defeito defeito, StatusDefeito statusDefeito, MotivoEncerramentoDefeitoSide motivoEncerramento) throws Exception {
 		
 		try {
 			

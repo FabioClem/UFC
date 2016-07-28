@@ -41,7 +41,7 @@ public class DefeitoSide {
 	private Lote lote;
 	
 	@ManyToOne
-	private MotivoEncerramento motivoEncerramento;
+	private MotivoEncerramentoDefeitoSide motivoEncerramento;
 	
 	private String informacoes;
 
@@ -129,11 +129,11 @@ public class DefeitoSide {
 		this.lote = lote;
 	}	
 
-	public MotivoEncerramento getMotivoEncerramento() {
+	public MotivoEncerramentoDefeitoSide getMotivoEncerramento() {
 		return motivoEncerramento;
 	}
 
-	public void setMotivoEncerramento(MotivoEncerramento motivoEncerramento) {
+	public void setMotivoEncerramento(MotivoEncerramentoDefeitoSide motivoEncerramento) {
 		this.motivoEncerramento = motivoEncerramento;
 	}	
 
