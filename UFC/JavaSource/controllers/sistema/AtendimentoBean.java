@@ -28,7 +28,7 @@ public class AtendimentoBean {
 	TimerTask buscaDefeitosAtivo = new TimerTask() {
 		
 		@Override
-		public void run() {			
+		public void run() {
 			
 			buscarDefeitosSideAtivo();
 			
@@ -51,7 +51,7 @@ public class AtendimentoBean {
 		
 	}
 
-	public AtendimentoBean() {	
+	public AtendimentoBean() {
 		
 	}
 	
