@@ -42,7 +42,7 @@ public class Defeito {
 	private UsuarioEfika usuarioEfika;
 	
 	@ManyToOne
-	private MotivoEncerramentoDefeitoSide motivoEncerramento;
+	private MotivoEncerramentoDefeito motivoEncerramentoDefeito;
 	
 	@ManyToOne
 	private StatusDefeito statusDefeito;
@@ -142,13 +142,13 @@ public class Defeito {
 	public void setUsuarioEfika(UsuarioEfika usuarioEfika) {
 		this.usuarioEfika = usuarioEfika;
 	}
-
-	public MotivoEncerramentoDefeitoSide getMotivoEncerramento() {
-		return motivoEncerramento;
+	
+	public MotivoEncerramentoDefeito getMotivoEncerramentoDefeito() {
+		return motivoEncerramentoDefeito;
 	}
 
-	public void setMotivoEncerramento(MotivoEncerramentoDefeitoSide motivoEncerramento) {
-		this.motivoEncerramento = motivoEncerramento;
+	public void setMotivoEncerramentoDefeito(MotivoEncerramentoDefeito motivoEncerramentoDefeito) {
+		this.motivoEncerramentoDefeito = motivoEncerramentoDefeito;
 	}
 
 	public StatusDefeito getStatusDefeito() {

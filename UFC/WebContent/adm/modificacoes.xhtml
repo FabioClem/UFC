@@ -244,7 +244,7 @@
 					<p:dataTable
 						value="#{motivoEncerramentoDefeitoSideBean.listarMotivoEncerramento()}"
 						var="motivo" style="margin-top: 20px;"
-						emptyMessage="Não há motivo registrados">
+						emptyMessage="Não há motivos registrados">
 
 						<p:column headerText="Motivo" style="text-align: center;">
 
@@ -303,6 +303,103 @@
 
 					</p:dialog>
 
+				</p:tab>
+
+				<p:tab title="Motivo Encerramento">
+
+					<h:panelGrid>
+
+						<h:outputText value="Motivo Encerramento "
+							style="font-weight:bold" />
+						<p:inputText
+							value="#{motivoEncerramentoDefeitoBean.motivoEncerramentoDefeito.nome}" />
+
+						<h:outputText value="Status " style="font-weight:bold" />
+						<p:selectBooleanCheckbox
+							value="#{motivoEncerramentoDefeitoBean.motivoEncerramentoDefeito.ativo}" />
+
+						<h:outputText value="Código " style="font-weight:bold" />
+						<p:inputText
+							value="#{motivoEncerramentoDefeitoBean.motivoEncerramentoDefeito.codigo}" />
+
+						<p:commandButton value="Cadastrar"
+							action="#{motivoEncerramentoDefeitoBean.cadastrarMotivoEncerramentoDefeito()}"
+							update="@all" />
+
+					</h:panelGrid>
+
+					<p:dataTable var="motivo"
+						value="#{motivoEncerramentoDefeitoBean.listarMotivoEncerramentoDefeito()}"
+						style="margin-top: 20px;"
+						emptyMessage="Não há motivos registrados">
+
+						<p:column headerText="Nome">
+
+							<h:outputText value="#{motivo.nome}" />
+
+						</p:column>
+
+						<p:column headerText="Ativo">
+
+							<h:outputText rendered="#{motivo.ativo}" value="Ativo" />
+							<h:outputText rendered="#{!motivo.ativo}" value="Inativo" />
+
+						</p:column>
+
+						<p:column headerText="Código">
+
+							<h:outputText value="#{motivo.codigo}" />
+
+						</p:column>
+
+						<p:column headerText="Editar"
+							style="text-align: center; width: 50px;">
+
+							<p:commandButton
+								update="@form:tabview:detalhesMotivoEncerramentoDefeito"
+								oncomplete="PF('modMotivoEncerramentoDefeito').show()"
+								icon="ui-icon-pencil" title="Edita Código">
+
+								<f:setPropertyActionListener value="#{motivo}"
+									target="#{motivoEncerramentoDefeitoBean.motivoEncerramentoDefeitoModifica}" />
+
+							</p:commandButton>
+
+						</p:column>
+
+					</p:dataTable>
+
+					<p:dialog header="Edita Motivo Encerramento"
+						widgetVar="modMotivoEncerramentoDefeito" modal="true"
+						showEffect="fade" hideEffect="fade" resizable="false" width="300"
+						height="250">
+
+						<h:panelGroup id="detalhesMotivoEncerramentoDefeito">
+
+							<h:panelGrid>
+
+								<h:outputText value="Motivo Encerramento "
+									style="font-weight:bold" />
+								<p:inputText
+									value="#{motivoEncerramentoDefeitoBean.motivoEncerramentoDefeitoModifica.nome}" />
+
+								<h:outputText value="Status " style="font-weight:bold" />
+								<p:selectBooleanCheckbox
+									value="#{motivoEncerramentoDefeitoBean.motivoEncerramentoDefeitoModifica.ativo}" />
+
+								<h:outputText value="Código " style="font-weight:bold" />
+								<p:inputText
+									value="#{motivoEncerramentoDefeitoBean.motivoEncerramentoDefeitoModifica.codigo}" />
+
+								<p:commandButton value="Modificar"
+									action="#{motivoEncerramentoDefeitoBean.modificarMotivoEncerramentoDefeito()}"
+									update="@all" />
+																		
+							</h:panelGrid>
+
+						</h:panelGroup>
+
+					</p:dialog>
 
 				</p:tab>
 

@@ -16,6 +16,7 @@
 		<class>entidades.sistema.Acoes</class>
 		<class>entidades.sistema.ComentarioDefeito</class>
 		<class>entidades.sistema.DefeitoFulltest</class>
+		<class>entidades.sistema.MotivoEncerramentoDefeito</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
 			<property name="hibernate.hbm2ddl.auto" value="update"/>

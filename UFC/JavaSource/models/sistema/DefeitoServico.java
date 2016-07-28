@@ -12,7 +12,7 @@ import javax.persistence.Query;
 import entidades.UsuarioEfika;
 import entidades.sistema.Defeito;
 import entidades.sistema.DefeitoSide;
-import entidades.sistema.MotivoEncerramentoDefeitoSide;
+import entidades.sistema.MotivoEncerramentoDefeito;
 import entidades.sistema.StatusDefeito;
 import entidades.sistema.TipoDefeito;
 
@@ -53,7 +53,6 @@ public class DefeitoServico {
 			defeito.setTipoDefeito(tipoDefeito);			
 			defeito.setUsuarioEfika(defeitoSide.getUsuarioEfika());
 			defeito.setStatusDefeito(defeito.getStatusDefeito());
-			defeito.setMotivoEncerramento(defeitoSide.getMotivoEncerramento());
 			
 			this.entityManager.persist(defeito);			
 			
@@ -96,14 +95,14 @@ public class DefeitoServico {
 		
 	}
 	
-	public void encerrarDefeito(Defeito defeito, StatusDefeito statusDefeito, MotivoEncerramentoDefeitoSide motivoEncerramento) throws Exception {
+	public void encerrarDefeito(Defeito defeito, StatusDefeito statusDefeito, MotivoEncerramentoDefeito motivoEncerramento) throws Exception {
 		
 		try {
 			
 			Date date = new Date();
 						
 			defeito.setStatusDefeito(statusDefeito);
-			defeito.setMotivoEncerramento(motivoEncerramento);
+			defeito.setMotivoEncerramentoDefeito(motivoEncerramento);
 			defeito.setDataEncerramento(date);
 			
 			this.entityManager.merge(defeito);
