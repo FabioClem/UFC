@@ -211,7 +211,7 @@ public class DefeitoSideServico {
 				
 			}else{
 				
-				queryC = "";
+				queryC = "AND d.dataIntegrado > CURRENT_DATE";
 				
 			}
 			

@@ -92,6 +92,7 @@ public class RelatorioBean implements Serializable {
 		this.graficoDefeitoSide.setTitle("Defeitos Pró-Ativo ");
 		this.graficoDefeitoSide.setLegendPosition("sw");
 		this.graficoDefeitoSide.setShowDataLabels(true);
+		this.graficoDefeitoSide.setDataFormat("value");
 
 	}
 
@@ -113,6 +114,7 @@ public class RelatorioBean implements Serializable {
 		this.graficoDefeitoSideMotivoEncerramento.setTitle("Motivo de encerramento Pró-Ativo");
 		this.graficoDefeitoSideMotivoEncerramento.setLegendPosition("sw");
 		this.graficoDefeitoSideMotivoEncerramento.setShowDataLabels(true);
+		this.graficoDefeitoSideMotivoEncerramento.setDataFormat("value");
 
 	}
 
@@ -134,6 +136,7 @@ public class RelatorioBean implements Serializable {
 		this.graficoDefeitoSideTipificacao.setTitle("Tipificação Pró-Ativo");
 		this.graficoDefeitoSideTipificacao.setLegendPosition("sw");
 		this.graficoDefeitoSideTipificacao.setShowDataLabels(true);
+		this.graficoDefeitoSideTipificacao.setDataFormat("value");
 
 	}
 
