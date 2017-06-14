@@ -1,102 +1,59 @@
 package entidades.sistema;
 
+import entidades.AbstractEntity;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import entidades.UsuarioEfika;
 
 @Entity
-@Table(name="ufc_acoes")
-public class Acoes {
-	
-	@Id
-	@GeneratedValue
-	private Integer id;
+@Table(name = "ufc_acoes_2")
+public class Acoes extends AbstractEntity {
 
-	private Date dataAcao;
-	
-	@ManyToOne
-	private UsuarioEfika usuarioEfika;
-	
-	@ManyToOne
-	private StatusDefeito statusDefeito;
-	
-	@ManyToOne
-	private Defeito defeito;
+    private Date dataAcao;
 
-	public Integer getId() {
-		return id;
-	}
+    @ManyToOne
+    private UsuarioEfika usuarioEfika;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    @ManyToOne
+    private StatusDefeito statusDefeito;
 
-	public Date getDataAcao() {
-		return dataAcao;
-	}
+    @ManyToOne
+    private Defeito defeito;
 
-	public void setDataAcao(Date dataAcao) {
-		this.dataAcao = dataAcao;
-	}
+    public Date getDataAcao() {
+        return dataAcao;
+    }
 
-	public UsuarioEfika getUsuarioEfika() {
-		return usuarioEfika;
-	}
+    public void setDataAcao(Date dataAcao) {
+        this.dataAcao = dataAcao;
+    }
 
-	public void setUsuarioEfika(UsuarioEfika usuarioEfika) {
-		this.usuarioEfika = usuarioEfika;
-	}
+    public UsuarioEfika getUsuarioEfika() {
+        return usuarioEfika;
+    }
 
-	public StatusDefeito getStatusDefeito() {
-		return statusDefeito;
-	}
+    public void setUsuarioEfika(UsuarioEfika usuarioEfika) {
+        this.usuarioEfika = usuarioEfika;
+    }
 
-	public void setStatusDefeito(StatusDefeito statusDefeito) {
-		this.statusDefeito = statusDefeito;
-	}
+    public StatusDefeito getStatusDefeito() {
+        return statusDefeito;
+    }
 
-	public Defeito getDefeito() {
-		return defeito;
-	}
+    public void setStatusDefeito(StatusDefeito statusDefeito) {
+        this.statusDefeito = statusDefeito;
+    }
 
-	public void setDefeito(Defeito defeito) {
-		this.defeito = defeito;
-	}
+    public Defeito getDefeito() {
+        return defeito;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Acoes other = (Acoes) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Acoes [id=" + id + "]";
-	}	
+    public void setDefeito(Defeito defeito) {
+        this.defeito = defeito;
+    }
 
 }

@@ -1,81 +1,81 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="/recursos/template/template.xhtml">
+    <ui:composition template="/recursos/template/template.xhtml">
 
-	<ui:define name="tituloPagina">
-		Meus defeitos
-	</ui:define>
-	<ui:define name="tituloPrincipal">
-		<i class="fa fa-edit"> </i> Meus defeitos</ui:define>
-	<ui:define name="tituloSecundario"></ui:define>
+        <ui:define name="tituloPagina">
+            Meus defeitos
+        </ui:define>
+        <ui:define name="tituloPrincipal">
+            <i class="fa fa-edit"> </i> Meus defeitos</ui:define>
+        <ui:define name="tituloSecundario"></ui:define>
 
-	<ui:define name="botoesAcao"></ui:define>
+        <ui:define name="botoesAcao"></ui:define>
 
-	<ui:insert name="eventos">
+        <ui:insert name="eventos">
 
-		<f:metadata>
+            <f:metadata>
 
-			<f:event listener="#{loginBean.validarLogin()}" type="preRenderView" />
+                <f:event listener="#{loginBean.validarLogin()}" type="preRenderView" />
 
-		</f:metadata>
+            </f:metadata>
 
-	</ui:insert>
+        </ui:insert>
 
-	<ui:define name="conteudo">
+        <ui:define name="conteudo">
 
-		<p:panel header="Defeitos Pró-Ativo">
+            <p:panel header="Defeitos Pró-Ativo">
 
-			<p:dataTable id="defeitosData" var="defeitos" selectionMode="single"
-				rowKey="#{defeitos.id}"
-				value="#{defeitoSideBean.listarMeusDefeitos()}"
-				emptyMessage="Não há defeitos disponiveis"
-				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-				paginator="true" style="margin-bottom:20px" rows="10"
-				currentPageReportTemplate="[{startRecord} de {endRecord}]" rendered="#{controleUsuarioBean.validaControleUsuario('Pro-Ativo')}">
-				
-				<f:facet name="header">
-					Defeitos Pró-Ativo
-				</f:facet>
+                <p:dataTable id="defeitosData" var="defeitos" selectionMode="single"
+                             rowKey="#{defeitos.id}"
+                             value="#{defeitoSideBean.listarMeusDefeitos()}"
+                             emptyMessage="Não há defeitos disponiveis"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                             paginator="true" style="margin-bottom:20px" rows="10"
+                             currentPageReportTemplate="[{startRecord} de {endRecord}]" rendered="#{controleUsuarioBean.validaControleUsuario('Pro-Ativo')}">
 
-				<p:column headerText="Instancia" style="text-align: center;">
+                    <f:facet name="header">
+                        Defeitos Pró-Ativo
+                    </f:facet>
 
-					<h:outputText value="#{defeitos.instancia}" />
+                    <p:column headerText="Instancia" style="text-align: center;">
 
-				</p:column>
+                        <h:outputText value="#{defeitos.instancia}" />
 
-				<p:column headerText="Tipificação" style="text-align: center;">
+                    </p:column>
 
-					<h:outputText value="#{defeitos.tipificacao.nome}" />
+                    <p:column headerText="Tipificação" style="text-align: center;">
 
-				</p:column>
+                        <h:outputText value="#{defeitos.tipificacao.nome}" />
 
-				<p:column headerText="Data Integrado" style="text-align: center;">
+                    </p:column>
 
-					<h:outputText value="#{defeitos.dataIntegradoFormatado}" />
+                    <p:column headerText="Data Integrado" style="text-align: center;">
 
-				</p:column>
+                        <h:outputText value="#{defeitos.dataIntegradoFormatado}" />
 
-				<p:column headerText="Ação" style="text-align: center; width: 50px;">
+                    </p:column>
 
-					<p:button outcome="detalhesDefeito" icon="ui-icon-pencil">
+                    <p:column headerText="Ação" style="text-align: center; width: 50px;">
 
-						<f:param name="id" value="#{defeitos.id}" />
+                        <p:button outcome="detalhesDefeito" icon="ui-icon-pencil">
 
-					</p:button>
+                            <f:param name="id" value="#{defeitos.id}" />
 
-				</p:column>
+                        </p:button>
 
-			</p:dataTable>
+                    </p:column>
 
-		</p:panel>
+                </p:dataTable>
 
-	</ui:define>
+            </p:panel>
 
-</ui:composition>
+        </ui:define>
+
+    </ui:composition>
 
 </html>

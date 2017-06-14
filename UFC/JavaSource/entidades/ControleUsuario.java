@@ -1,97 +1,52 @@
 package entidades;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ufc_controle_usuario")
-public class ControleUsuario {
+@Table(name = "ufc_controle_usuario_2")
+public class ControleUsuario extends AbstractEntity {
 
-	@Id
-	@GeneratedValue
-	private Integer id;
-	
-	private Boolean ativo = false;
-	
-	private String tipoDefeito;
-	
-	private Boolean adm = false;
-	
-	@ManyToOne
-	private UsuarioEfika usuarioEfika;
-	
-	public Integer getId() {
-		return id;
-	}
+    private Boolean ativo = false;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    private String tipoDefeito;
 
-	public Boolean getAtivo() {
-		return ativo;
-	}
+    private Boolean adm = false;
 
-	public void setAtivo(Boolean ativo) {
-		this.ativo = ativo;
-	}
+    @ManyToOne
+    private UsuarioEfika usuarioEfika;
 
-	public String getTipoDefeito() {
-		return tipoDefeito;
-	}
+    public Boolean getAtivo() {
+        return ativo;
+    }
 
-	public void setTipoDefeito(String tipoDefeito) {
-		this.tipoDefeito = tipoDefeito;
-	}
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
 
-	public UsuarioEfika getUsuarioEfika() {
-		return usuarioEfika;
-	}
+    public String getTipoDefeito() {
+        return tipoDefeito;
+    }
 
-	public void setUsuarioEfika(UsuarioEfika usuarioEfika) {
-		this.usuarioEfika = usuarioEfika;
-	}	
+    public void setTipoDefeito(String tipoDefeito) {
+        this.tipoDefeito = tipoDefeito;
+    }
 
-	public Boolean getAdm() {
-		return adm;
-	}
+    public UsuarioEfika getUsuarioEfika() {
+        return usuarioEfika;
+    }
 
-	public void setAdm(Boolean adm) {
-		this.adm = adm;
-	}	
-	
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
+    public void setUsuarioEfika(UsuarioEfika usuarioEfika) {
+        this.usuarioEfika = usuarioEfika;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ControleUsuario other = (ControleUsuario) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
+    public Boolean getAdm() {
+        return adm;
+    }
 
-	@Override
-	public String toString() {
-		return "ControleUsuario [id=" + id + "]";
-	}
-	
+    public void setAdm(Boolean adm) {
+        this.adm = adm;
+    }
+
 }

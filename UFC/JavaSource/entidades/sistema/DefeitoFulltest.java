@@ -1,131 +1,118 @@
 package entidades.sistema;
 
+import entidades.AbstractEntity;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ufc_defeito_fulltest")
-public class DefeitoFulltest {
-	
-	@Id
-	@GeneratedValue
-	private Integer id;
-	
-	private String ss;
-	
-	private String instancia;
-	
-	private Date dataAbertura;
-	
-	private Date dataVencimento;
-	
-	private String fulltest;
-	
-	private String informacoes;
-	
-	@ManyToOne
-	private Tipificacao tipificacao;
-	
-	@ManyToOne
-	private Lote lote;
-	
-	@ManyToOne
-	private StatusFulltest statusFulltest;
-	
-	@ManyToOne
-	private TipoDefeito tipoDefeito;
+@Table(name = "ufc_defeito_fulltest_2")
+public class DefeitoFulltest extends AbstractEntity {
 
-	public Integer getId() {
-		return id;
-	}
+    private String ss;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    private String instancia;
 
-	public String getSs() {
-		return ss;
-	}
+    private Date dataAbertura;
 
-	public void setSs(String ss) {
-		this.ss = ss;
-	}
+    private Date dataVencimento;
 
-	public String getInstancia() {
-		return instancia;
-	}
+    private String fulltest;
 
-	public void setInstancia(String instancia) {
-		this.instancia = instancia;
-	}
+    private String informacoes;
 
-	public Date getDataAbertura() {
-		return dataAbertura;
-	}
+    @ManyToOne
+    private Tipificacao tipificacao;
 
-	public void setDataAbertura(Date dataAbertura) {
-		this.dataAbertura = dataAbertura;
-	}
+    @ManyToOne
+    private Lote lote;
 
-	public Date getDataVencimento() {
-		return dataVencimento;
-	}
+    @ManyToOne
+    private StatusFulltest statusFulltest;
 
-	public void setDataVencimento(Date dataVencimento) {
-		this.dataVencimento = dataVencimento;
-	}
+    @ManyToOne
+    private TipoDefeito tipoDefeito;
 
-	public String getFulltest() {
-		return fulltest;
-	}
+    public String getSs() {
+        return ss;
+    }
 
-	public void setFulltest(String fulltest) {
-		this.fulltest = fulltest;
-	}
+    public void setSs(String ss) {
+        this.ss = ss;
+    }
 
-	public String getInformacoes() {
-		return informacoes;
-	}
+    public String getInstancia() {
+        return instancia;
+    }
 
-	public void setInformacoes(String informacoes) {
-		this.informacoes = informacoes;
-	}
+    public void setInstancia(String instancia) {
+        this.instancia = instancia;
+    }
 
-	public Tipificacao getTipificacao() {
-		return tipificacao;
-	}
+    public Date getDataAbertura() {
+        return dataAbertura;
+    }
 
-	public void setTipificacao(Tipificacao tipificacao) {
-		this.tipificacao = tipificacao;
-	}
+    public void setDataAbertura(Date dataAbertura) {
+        this.dataAbertura = dataAbertura;
+    }
 
-	public Lote getLote() {
-		return lote;
-	}
+    public Date getDataVencimento() {
+        return dataVencimento;
+    }
 
-	public void setLote(Lote lote) {
-		this.lote = lote;
-	}
+    public void setDataVencimento(Date dataVencimento) {
+        this.dataVencimento = dataVencimento;
+    }
 
-	public StatusFulltest getStatusFulltest() {
-		return statusFulltest;
-	}
+    public String getFulltest() {
+        return fulltest;
+    }
 
-	public void setStatusFulltest(StatusFulltest statusFulltest) {
-		this.statusFulltest = statusFulltest;
-	}
+    public void setFulltest(String fulltest) {
+        this.fulltest = fulltest;
+    }
 
-	public TipoDefeito getTipoDefeito() {
-		return tipoDefeito;
-	}
+    public String getInformacoes() {
+        return informacoes;
+    }
 
-	public void setTipoDefeito(TipoDefeito tipoDefeito) {
-		this.tipoDefeito = tipoDefeito;
-	}	
-	
+    public void setInformacoes(String informacoes) {
+        this.informacoes = informacoes;
+    }
+
+    public Tipificacao getTipificacao() {
+        return tipificacao;
+    }
+
+    public void setTipificacao(Tipificacao tipificacao) {
+        this.tipificacao = tipificacao;
+    }
+
+    public Lote getLote() {
+        return lote;
+    }
+
+    public void setLote(Lote lote) {
+        this.lote = lote;
+    }
+
+    public StatusFulltest getStatusFulltest() {
+        return statusFulltest;
+    }
+
+    public void setStatusFulltest(StatusFulltest statusFulltest) {
+        this.statusFulltest = statusFulltest;
+    }
+
+    public TipoDefeito getTipoDefeito() {
+        return tipoDefeito;
+    }
+
+    public void setTipoDefeito(TipoDefeito tipoDefeito) {
+        this.tipoDefeito = tipoDefeito;
+    }
+
 }

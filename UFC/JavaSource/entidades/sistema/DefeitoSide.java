@@ -1,11 +1,10 @@
 package entidades.sistema;
 
+import entidades.AbstractEntity;
 import java.util.Date;
 
 import javax.persistence.Entity;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -13,166 +12,124 @@ import entidades.UsuarioEfika;
 import util.JSFUtil;
 
 @Entity
-@Table(name="ufc_defeito_side")
-public class DefeitoSide {
-	
-	@Id
-	@GeneratedValue
-	private Integer id;
-	
-	private String ss;
-	
-	private String instancia;
-	
-	private Date dataIntegrado;
-	
-	private Date dataAcao;
-		
-	@ManyToOne	
-	private Tipificacao tipificacao;
-	
-	@ManyToOne
-	private UsuarioEfika usuarioEfika;
-	
-	@ManyToOne
-	private StatusDefeito statusDefeito;
-	
-	@ManyToOne
-	private Lote lote;
-	
-	@ManyToOne
-	private MotivoEncerramentoDefeitoSide motivoEncerramento;
-	
-	private String informacoes;
+@Table(name = "ufc_defeito_side_2")
+public class DefeitoSide extends AbstractEntity {
 
-	public Integer getId() {
-		return id;
-	}
+    private String ss;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    private String instancia;
 
-	public String getInstancia() {
-		return instancia;
-	}
+    private Date dataIntegrado;
 
-	public void setInstancia(String instancia) {
-		this.instancia = instancia;
-	}
+    private Date dataAcao;
 
-	public Date getDataIntegrado() {
-		return dataIntegrado;
-	}
-	
-	public String getDataIntegradoFormatado() {
-		
-		return JSFUtil.formatarDataHra(this.dataIntegrado);
-		
-	}
+    @ManyToOne
+    private Tipificacao tipificacao;
 
-	public void setDataIntegrado(Date dataIntegrado) {
-		this.dataIntegrado = dataIntegrado;
-	}
+    @ManyToOne
+    private UsuarioEfika usuarioEfika;
 
-	public Date getDataAcao() {
-		return dataAcao;
-	}
-	
-	public String getDataAcaoFormatado() {
-		
-		return JSFUtil.formatarDataHra(this.dataAcao);
-		
-	}
+    @ManyToOne
+    private StatusDefeito statusDefeito;
 
-	public void setDataAcao(Date dataAcao) {
-		this.dataAcao = dataAcao;
-	}
-	
-	public Tipificacao getTipificacao() {
-		return tipificacao;
-	}
+    @ManyToOne
+    private Lote lote;
 
-	public void setTipificacao(Tipificacao tipificacao) {
-		this.tipificacao = tipificacao;
-	}	
+    @ManyToOne
+    private MotivoEncerramentoDefeitoSide motivoEncerramento;
 
-	public UsuarioEfika getUsuarioEfika() {
-		return usuarioEfika;
-	}
+    private String informacoes;
 
-	public void setUsuarioEfika(UsuarioEfika usuarioEfika) {
-		this.usuarioEfika = usuarioEfika;
-	}	
+    public String getInstancia() {
+        return instancia;
+    }
 
-	public String getSs() {
-		return ss;
-	}
+    public void setInstancia(String instancia) {
+        this.instancia = instancia;
+    }
 
-	public void setSs(String ss) {
-		this.ss = ss;
-	}	
+    public Date getDataIntegrado() {
+        return dataIntegrado;
+    }
 
-	public StatusDefeito getStatusDefeito() {
-		return statusDefeito;
-	}
+    public String getDataIntegradoFormatado() {
 
-	public void setStatusDefeito(StatusDefeito statusDefeito) {
-		this.statusDefeito = statusDefeito;
-	}	
+        return JSFUtil.formatarDataHra(this.dataIntegrado);
 
-	public Lote getLote() {
-		return lote;
-	}
+    }
 
-	public void setLote(Lote lote) {
-		this.lote = lote;
-	}	
+    public void setDataIntegrado(Date dataIntegrado) {
+        this.dataIntegrado = dataIntegrado;
+    }
 
-	public MotivoEncerramentoDefeitoSide getMotivoEncerramento() {
-		return motivoEncerramento;
-	}
+    public Date getDataAcao() {
+        return dataAcao;
+    }
 
-	public void setMotivoEncerramento(MotivoEncerramentoDefeitoSide motivoEncerramento) {
-		this.motivoEncerramento = motivoEncerramento;
-	}	
+    public String getDataAcaoFormatado() {
 
-	public String getInformacoes() {
-		return informacoes;
-	}
+        return JSFUtil.formatarDataHra(this.dataAcao);
 
-	public void setInformacoes(String informacoes) {
-		this.informacoes = informacoes;
-	}
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
+    public void setDataAcao(Date dataAcao) {
+        this.dataAcao = dataAcao;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		DefeitoSide other = (DefeitoSide) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
+    public Tipificacao getTipificacao() {
+        return tipificacao;
+    }
 
-	@Override
-	public String toString() {
-		return "DefeitoSide [id=" + id + "]";
-	}
-	
+    public void setTipificacao(Tipificacao tipificacao) {
+        this.tipificacao = tipificacao;
+    }
+
+    public UsuarioEfika getUsuarioEfika() {
+        return usuarioEfika;
+    }
+
+    public void setUsuarioEfika(UsuarioEfika usuarioEfika) {
+        this.usuarioEfika = usuarioEfika;
+    }
+
+    public String getSs() {
+        return ss;
+    }
+
+    public void setSs(String ss) {
+        this.ss = ss;
+    }
+
+    public StatusDefeito getStatusDefeito() {
+        return statusDefeito;
+    }
+
+    public void setStatusDefeito(StatusDefeito statusDefeito) {
+        this.statusDefeito = statusDefeito;
+    }
+
+    public Lote getLote() {
+        return lote;
+    }
+
+    public void setLote(Lote lote) {
+        this.lote = lote;
+    }
+
+    public MotivoEncerramentoDefeitoSide getMotivoEncerramento() {
+        return motivoEncerramento;
+    }
+
+    public void setMotivoEncerramento(MotivoEncerramentoDefeitoSide motivoEncerramento) {
+        this.motivoEncerramento = motivoEncerramento;
+    }
+
+    public String getInformacoes() {
+        return informacoes;
+    }
+
+    public void setInformacoes(String informacoes) {
+        this.informacoes = informacoes;
+    }
+
 }

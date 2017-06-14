@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import entidades.UsuarioEfika;
 
 @Entity
-@Table(name="ufc_defeito")
+@Table(name="ufc_defeito_2")
 public class Defeito {
 
 	@Id
