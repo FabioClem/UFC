@@ -64,6 +64,24 @@ public class LoteBean {
 		}		
 		
 	}
+		
+	public void cadastrarLoteEncerrado(FileUploadEvent event) {
+				
+		UploadedFile file = event.getFile();
+		
+		try {
+			
+			StatusDefeito statusDefeito = this.statusDefeitoServico.listarStatusDefeitoEspecifico("Encerrado");
+			this.importaCSVServico.cadastrarLote(file, sessao.getUsuario(), statusDefeito);
+			JSFUtil.addInfoMessage("Lote cadastrado com sucesso.");
+			
+		} catch (Exception e) {
+			
+			JSFUtil.addErrorMessage(e.getMessage());
+
+		}		
+		
+	}
 	
 	public void listarLoteEspecificoNome() {
 		
